@@ -1,7 +1,7 @@
-import EventCard from "./EventCard";
-import { useGetEventsQuery } from "./eventsSlice";
+import EventCard from "../components/events/EventCard";
+import { useGetEventsQuery } from "../components/events/eventsSlice";
 
-import "../../styles/EventsList.css";
+import "../styles/EventsList.css";
 
 //Function that renders the list of events
 export default function EventsList() {
