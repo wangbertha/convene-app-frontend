@@ -58,7 +58,7 @@ function Auth() {
           <label>
             Password:
             <input
-              placeholder="password"
+              placeholder="Password"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -69,7 +69,7 @@ function Auth() {
             <label>
               First Name:
               <input
-                placeholder="Your Name Here"
+                placeholder="First Name"
                 type="text"
                 value={firstName}
                 onChange={(event) => setFirstName(event.target.value)}
