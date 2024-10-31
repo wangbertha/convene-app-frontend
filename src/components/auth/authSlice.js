@@ -41,21 +41,41 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     token: sessionStorage.getItem(TOKEN_KEY),
+    selectedUserUd: null, //Stores the users id in state
   },
   reducers: {
     logout: (state) => {
       state.token = null;
       sessionStorage.removeItem(TOKEN_KEY);
     },
+    setUserId: (state, { payload }) => {
+      state.selectedUserUd = payload.userId;
+    },
   },
-  //update token for mutations
+  //update token and LogedUserId for mutations
   extraReducers: (builder) => {
-    builder.addMatcher(api.endpoints.login.matchFulfilled, storeToken);
-    builder.addMatcher(api.endpoints.register.matchFulfilled, storeToken);
+    builder.addMatcher(
+      api.endpoints.login.matchFulfilled,
+      (state, { payload }) => {
+        state.token = payload.token;
+        sessionStorage.setItem(TOKEN_KEY, payload.token);
+        state.selectedUserId = payload.userId; // Store userId after login
+      }
+    );
+    builder.addMatcher(
+      api.endpoints.register.matchFulfilled,
+      (state, { payload }) => {
+        state.token = payload.token;
+        sessionStorage.setItem(TOKEN_KEY, payload.token);
+        state.selectedUserId = payload.userId; // Store userId after registration
+      }
+    );
   },
 });
 
 //exports
-export const { logout } = authSlice.actions;
+export const { logout, setUserId } = authSlice.actions;
+
 export const selectToken = (state) => state.auth.token;
+export const selectUserId = (state) => state.auth.selectedUserUd;
 export default authSlice.reducer;
