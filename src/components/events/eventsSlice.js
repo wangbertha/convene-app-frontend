@@ -1,6 +1,6 @@
-import api from "../../store/api";
+import api from "../../../store/api";
 
-const eventApi = api.injecctEndpoints({
+const eventApi = api.injectEndpoints({
   endpoints: (build) => ({
     getEvents: build.query({
       query: () => "/events",

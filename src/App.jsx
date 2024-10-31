@@ -1,13 +1,8 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
+import EventsList from "./components/events/EventList";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-    </>
-  )
+  return <EventsList />;
 }
 
-export default App
+export default App;
