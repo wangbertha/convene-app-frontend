@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
+
 import "../../styles/Auth.css";
 
 function Auth() {
@@ -32,7 +33,7 @@ function Auth() {
     const credentials = { email, password, firstname };
 
     try {
-      await loginMethod(credentials).unwrap();
+      const response = await loginMethod(credentials).unwrap();
       navigate("/");
     } catch (error) {
       console.error(error);

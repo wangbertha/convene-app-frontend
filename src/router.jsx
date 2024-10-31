@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { path: "/Events", element: <EventsList /> },
+      { path: "/events", element: <EventsList /> },
       { path: "/register", element: <Auth /> },
     ],
   },
