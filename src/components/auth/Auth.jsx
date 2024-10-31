@@ -21,7 +21,7 @@ function Auth() {
   //email and password to state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [firstname, setFirstname] = useState("");
 
   //send user email/password to api
   const attemptAuth = async (event) => {
@@ -29,7 +29,7 @@ function Auth() {
 
     //login or register
     const loginMethod = isLogin ? login : register;
-    const credentials = { email, password, firstName };
+    const credentials = { email, password, firstname };
 
     try {
       await loginMethod(credentials).unwrap();
@@ -71,8 +71,8 @@ function Auth() {
               <input
                 placeholder="First Name"
                 type="text"
-                value={firstName}
-                onChange={(event) => setFirstName(event.target.value)}
+                value={firstname}
+                onChange={(event) => setFirstname(event.target.value)}
                 autoComplete="given-name"
               />
             </label>
