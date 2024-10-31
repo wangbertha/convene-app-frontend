@@ -1,0 +1,73 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 1rem auto;
+
+  max-width: 80%;
+}
+
+.event-list {
+  gap: 1rem;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 5px;
+  margin: 0 0 1rem;
+
+  border: 1px solid blueviolet;
+}
+
+.event-card a {
+  text-decoration: none;
+  color: rgb(156, 47, 47);
+}
+
+/* buttons css */
+
+.going-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.going-buttons button {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.going-buttons button:active {
+  scale: 1.1;
+}
+
+.info-button {
+  background-color: rgb(206, 200, 200);
+  color: red;
+}
+
+.selected-button {
+  background-color: red;
+  color: white;
+}
+
+.not-selected-button {
+  background-color: rgb(206, 200, 200);
+  color: red;
+}
