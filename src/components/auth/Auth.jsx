@@ -41,7 +41,9 @@ function Auth() {
   return (
     <>
       <main className="loginMain">
-        <h1>{authAction}</h1>
+        <h1>
+          Hi, welcome to Convene! Please use the form to {authAction} below:
+        </h1>
         <form className="authForm" onSubmit={attemptAuth}>
           <label>
             Email:
@@ -63,16 +65,18 @@ function Auth() {
               autoComplete="current-password"
             />
           </label>
-          <label>
-            First Name:
-            <input
-              placeholder="Your Name Here"
-              type="text"
-              value={firstName}
-              onChange={(event) => setFirstName(event.target.value)}
-              autoComplete="given-name"
-            />
-          </label>
+          {isRegister && (
+            <label>
+              First Name:
+              <input
+                placeholder="Your Name Here"
+                type="text"
+                value={firstName}
+                onChange={(event) => setFirstName(event.target.value)}
+                autoComplete="given-name"
+              />
+            </label>
+          )}
           <button>{authAction}</button>
         </form>
         <a className="regLink" href="#" onClick={() => setIsLogin(!isLogin)}>
