@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
-import "./Auth.css";
+import "../../styles/Auth.css";
 
 function Auth() {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ function Auth() {
               autoComplete="current-password"
             />
           </label>
-          {isRegister && (
+          {!isLogin && (
             <label>
               First Name:
               <input
