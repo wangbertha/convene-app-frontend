@@ -33,7 +33,7 @@ function Auth() {
     const credentials = { email, password, firstname };
 
     try {
-      const response = await loginMethod(credentials).unwrap();
+      await loginMethod(credentials).unwrap();
       navigate("/");
     } catch (error) {
       console.error(error);
