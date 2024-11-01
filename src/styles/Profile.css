@@ -1,0 +1,19 @@
+.profile-list {
+    max-width: 300px;
+}
+
+.profile-list li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-location {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-interests {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
