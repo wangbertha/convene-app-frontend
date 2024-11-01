@@ -12,7 +12,7 @@ function Auth() {
   //register or login message
   const altCopy = isLogin
     ? "Register for an account here"
-    : "Already registered? Click to here to login";
+    : "Already registered? Click here to login";
 
   //mutate data for login/registration
   const [login, { error: loginError }] = useLoginMutation();
