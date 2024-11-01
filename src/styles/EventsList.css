@@ -8,8 +8,20 @@ main {
   max-width: 80%;
 }
 
+.upcoming-events {
+  color: #fe3073;
+
+  margin: 0 0 1rem;
+}
+
+.event-name {
+  color: black;
+}
+
 .event-list {
   gap: 1rem;
+
+  color: white;
 }
 
 .event-details {
@@ -32,7 +44,8 @@ main {
   padding: 10px 5px;
   margin: 0 0 1rem;
 
-  border: 1px solid blueviolet;
+  background: linear-gradient(45deg, #fe3073, #ff594b);
+  border-radius: 10px;
 }
 
 .event-card a {
@@ -58,16 +71,18 @@ main {
 }
 
 .info-button {
-  background-color: rgb(206, 200, 200);
-  color: red;
+  background-color: white;
+  color: #fe3073;
 }
 
 .selected-button {
-  background-color: red;
-  color: white;
+  background-color: #ff978f;
+  color: #fe3073;
 }
 
 .not-selected-button {
-  background-color: rgb(206, 200, 200);
-  color: red;
+  background-color: white;
+  color: #fe3073;
+
+  scale: 1.1;
 }

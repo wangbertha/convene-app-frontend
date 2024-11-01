@@ -16,7 +16,7 @@ export default function EventsList() {
 
   return (
     <main>
-      <h1>Upcoming events in your area</h1>
+      <h1 className="upcoming-events">Upcoming events in your area</h1>
       <ul className="event-list">
         {events.map((event) => (
           <EventCard key={event.id} event={event} />
