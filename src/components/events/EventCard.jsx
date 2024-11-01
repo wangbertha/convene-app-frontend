@@ -4,7 +4,7 @@ import { useUpdateEventMutation } from "./eventsSlice";
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import { useGetMeQuery } from "../chat/userSlice";
+import { useGetMeQuery } from "../users/userSlice";
 
 export default function EventCard({ event }) {
   const date = event.startTime.slice(0, 10);
