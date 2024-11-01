@@ -1,0 +1,57 @@
+.loginMain {
+  background-color: var(--convene-gray);
+  color: var(--convene-blue);
+  text-align: center;
+  max-width: max-content;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 0.5em;
+  min-width: 60%;
+}
+
+.authBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reglink {
+  font-weight: bold;
+}
+
+.regLink:link {
+  color: var(--convene-pink);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.regLink:visited {
+  color: #c56458;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.authImg {
+  max-width: 85%;
+}
+
+.authButton {
+  align-self: center;
+  background-color: var(--convene-blue);
+  border: none;
+  color: var(--convene-white);
+  font-weight: bold;
+  text-transform: capitalize;
+  border-radius: 10px;
+  padding: 0.5em;
+  width: 50%;
+}
+
+@media screen and (max-width: 550px) {
+  .authImg {
+    max-width: 100%;
+  }
+}

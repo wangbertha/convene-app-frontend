@@ -8,11 +8,11 @@ function Auth() {
 
   //swap between register and login
   const [isLogin, setIsLogin] = useState(true);
-  const authAction = isLogin ? "Login" : "Register";
+  const authAction = isLogin ? "login" : "register";
   //register or login message
   const altCopy = isLogin
     ? "Register for an account here"
-    : "Already registered? Login here";
+    : "Already registered? Click here to login";
 
   //mutate data for login/registration
   const [login, { error: loginError }] = useLoginMutation();
@@ -41,11 +41,15 @@ function Auth() {
   return (
     <>
       <main className="loginMain">
-        <h1>
-          Hi, welcome to Convene! Please use the form to {authAction} below:
-        </h1>
+        <img
+          className="authImg"
+          src="../../../public/popcorn_pals_convene.png"
+          alt="Convene Logo"
+        />
+        <h1>Hi, Welcome to Convene!</h1>
+        <h2>Please use the form below to {authAction}:</h2>
         <form className="authForm" onSubmit={attemptAuth}>
-          <label>
+          <label className="authBox">
             Email:
             <input
               placeholder="user@email.com"
@@ -55,7 +59,7 @@ function Auth() {
               autoComplete="email"
             />
           </label>
-          <label>
+          <label className="authBox">
             Password:
             <input
               placeholder="Password"
@@ -66,7 +70,7 @@ function Auth() {
             />
           </label>
           {!isLogin && (
-            <label>
+            <label className="authBox">
               First Name:
               <input
                 placeholder="First Name"
@@ -77,7 +81,7 @@ function Auth() {
               />
             </label>
           )}
-          <button>{authAction}</button>
+          <button className="authButton">{authAction}</button>
         </form>
         <a className="regLink" href="#" onClick={() => setIsLogin(!isLogin)}>
           {altCopy}
