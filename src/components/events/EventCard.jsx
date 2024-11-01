@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../auth/authSlice";
 import { useUpdateEventMutation } from "./eventsSlice";
 import { useState, useEffect } from "react";
-// import { jwtDecode } from "jwt-decode";
 
 import { Link } from "react-router-dom";
 import { useGetMeQuery } from "../chat/userSlice";
