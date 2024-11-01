@@ -1,0 +1,23 @@
+.placeholder {
+  text-align: center;
+  color: var(--convene-blue);
+  background-color: var(--convene-pink);
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+.recieved {
+  background-color: var(--convene-gray);
+  color: var(--convene-blue);
+}
+
+.sent {
+  margin-left: auto;
+  background-color: var(--convene-pink);
+  color: var(--convene-blue);
+  width: 20%;
+}
