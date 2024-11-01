@@ -15,10 +15,10 @@ const eventApi = api.injectEndpoints({
       providesTags: ["Events"],
     }),
     updateEvent: build.mutation({
-      query: (id, userAttending) => ({
+      query: ({ id, attending }) => ({
         url: `/events/${id}`,
         method: "PATCH",
-        body: userAttending,
+        body: { attending },
       }),
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
