@@ -1,6 +1,6 @@
 .loginMain {
-  background-color: #b3bec5;
-  color: #0f2c43;
+  background-color: var(--convene-gray);
+  color: var(--convene-blue);
   text-align: center;
   max-width: max-content;
 }
@@ -23,7 +23,7 @@
 }
 
 .regLink:link {
-  color: #ee7868;
+  color: var(--convene-pink);
   text-decoration: none;
   font-weight: bold;
 }
@@ -35,15 +35,23 @@
 }
 
 .authImg {
-  max-width: 80%;
+  max-width: 85%;
 }
 
 .authButton {
-  background-color: #0f2c43;
+  align-self: center;
+  background-color: var(--convene-blue);
   border: none;
-  color: white;
+  color: var(--convene-white);
   font-weight: bold;
   text-transform: capitalize;
   border-radius: 10px;
   padding: 0.5em;
+  width: 50%;
+}
+
+@media screen and (max-width: 550px) {
+  .authImg {
+    max-width: 100%;
+  }
 }
