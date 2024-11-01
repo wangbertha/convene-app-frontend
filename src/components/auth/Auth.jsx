@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
-
 import "../../styles/Auth.css";
 
 function Auth() {
