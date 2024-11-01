@@ -13,6 +13,7 @@
 .recieved {
   background-color: var(--convene-gray);
   color: var(--convene-blue);
+  width: 20%;
 }
 
 .sent {
@@ -20,4 +21,16 @@
   background-color: var(--convene-pink);
   color: var(--convene-blue);
   width: 20%;
+}
+
+.message {
+  border-radius: 10px;
+  padding: 0.4em;
+}
+
+.conversation {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
 }

@@ -7,10 +7,12 @@ export default function Inbox() {
       <h2 className="placeholder">
         This is a placeholder for our messaging app. Your inbox will go here.
       </h2>
-      <p className="recieved">This is a test Received message</p>
-      <p className="sent">This is a test Received message</p>
-      <p className="recieved">This is a test Received message</p>
-      <p className="sent">This is a test Received message</p>
+      <article className="conversation">
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
+      </article>
     </>
   );
 }
