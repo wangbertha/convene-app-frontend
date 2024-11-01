@@ -15,7 +15,7 @@ export default function EventsList() {
   if (!events.length) return <p>No upcoming events</p>;
 
   return (
-    <main>
+    <main className="main-eventlist">
       <h1 className="upcoming-events">Upcoming events in your area</h1>
       <ul className="event-list">
         {events.map((event) => (

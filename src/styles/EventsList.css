@@ -1,30 +1,29 @@
-main {
+.main-eventlist {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin: 1rem auto;
-
   max-width: 80%;
 }
 
 .upcoming-events {
-  color: #fe3073;
+  color: var(--convene-blue);
 
   margin: 0 0 1rem;
 }
 
 .event-name {
-  color: black;
+  color: var(--convene-blue);
 }
 
 .event-list {
   gap: 1rem;
 
-  color: white;
+  color: var(--convene-blue);
 }
 
-.event-details {
+.event-details-div {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -44,7 +43,7 @@ main {
   padding: 10px 5px;
   margin: 0 0 1rem;
 
-  background: linear-gradient(45deg, #fe3073, #ff594b);
+  background: linear-gradient(45deg, var(--convene-white), var(--convene-pink));
   border-radius: 10px;
 }
 
@@ -57,7 +56,7 @@ main {
 
 .going-buttons {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .going-buttons button {
@@ -72,17 +71,17 @@ main {
 
 .info-button {
   background-color: white;
-  color: #fe3073;
+  color: var(--convene-blue);
 }
 
 .selected-button {
   background-color: #ff978f;
-  color: #fe3073;
+  color: var(--convene-blue);
 }
 
 .not-selected-button {
   background-color: white;
-  color: #fe3073;
+  color: var(--convene-blue);
 
   scale: 1.1;
 }

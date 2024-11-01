@@ -45,7 +45,7 @@ export default function EventCard({ event }) {
 
   return (
     <li className="event-card">
-      <div className="event-details">
+      <div className="event-details-div">
         <a href={event.url}>
           <h3 className="event-name">{event.name}</h3>
         </a>
