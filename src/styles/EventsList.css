@@ -16,7 +16,7 @@
 }
 
 .event-name {
-  color: var(--convene-blue);
+  color: var(--convene-pink);
 }
 
 .event-list {
@@ -45,47 +45,69 @@
   padding: 10px 5px;
   margin: 0 0 1rem;
 
-  background: linear-gradient(45deg, var(--convene-white), var(--convene-pink));
+  background: var(--convene-gray);
   border-radius: 10px;
 }
 
 .event-card a {
   text-decoration: none;
-  color: rgb(156, 47, 47);
 }
 
 /* buttons css */
 
-.going-buttons {
+.event-buttons {
   display: flex;
   gap: 10px;
+
+  flex-wrap: wrap;
 }
 
-.going-buttons button {
-  padding: 5px;
+.switch-container {
+  position: relative;
+  display: flex;
+}
+
+.switch-button {
+  flex: 1;
   border: none;
-  border-radius: 5px;
+
+  background-color: var(--convene-white);
+  color: var(--convene-pink);
+  font-weight: bold;
+
+  cursor: pointer;
+  outline: none;
+  position: relative;
+
+  transition: background-color 0.3s ease;
 }
 
-.going-buttons button:active {
-  scale: 1.1;
+.switch-button.left {
+  border-radius: 15px 0 0 15px;
+}
+
+.switch-button.right {
+  border-radius: 0 15px 15px 0;
+}
+
+/* Change button colors on hover */
+.event-buttons button:hover,
+.event-buttons a:hover {
+  background-color: var(--convene-pink);
+
+  color: var(--convene-white);
 }
 
 .info-button {
   background-color: white;
-  color: var(--convene-blue);
+  color: var(--convene-pink);
+
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
 }
 
-.selected-button {
-  background-color: var(--convene-blue);
-  color: var(--convene-white);
-
-  scale: 0.9;
-}
-
-.not-selected-button {
-  background-color: white;
+.selected {
+  background: #ccc;
   color: var(--convene-blue);
-
-  scale: 1.1;
 }
