@@ -1,0 +1,49 @@
+.loginMain {
+  background-color: #b3bec5;
+  color: #0f2c43;
+  text-align: center;
+  max-width: max-content;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 0.5em;
+  min-width: 60%;
+}
+
+.authBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reglink {
+  font-weight: bold;
+}
+
+.regLink:link {
+  color: #ee7868;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.regLink:visited {
+  color: #c56458;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.authImg {
+  max-width: 80%;
+}
+
+.authButton {
+  background-color: #0f2c43;
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-radius: 10px;
+  padding: 0.5em;
+}
