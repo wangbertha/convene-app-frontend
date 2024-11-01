@@ -5,6 +5,8 @@
 
   margin: 1rem auto;
   max-width: 80%;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .upcoming-events {
@@ -75,8 +77,10 @@
 }
 
 .selected-button {
-  background-color: #ff978f;
-  color: var(--convene-blue);
+  background-color: var(--convene-blue);
+  color: var(--convene-white);
+
+  scale: 0.9;
 }
 
 .not-selected-button {

@@ -5,7 +5,6 @@ import EventsList from "./components/events/EventList";
 import Auth from "./components/auth/Auth";
 import Event from "./components/events/Event";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,8 +12,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/events", element: <EventsList /> },
       { path: "/register", element: <Auth /> },
-      { path: "/Events", element: <EventsList /> },
-      { path: "/events/:id", element: <Event /> }
+      { path: "/events/:id", element: <Event /> },
     ],
   },
 ]);
