@@ -4,7 +4,7 @@ import { useUpdateEventMutation } from "./eventsSlice";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function EventCard({ event }) {
   const date = event.startTime.slice(0, 10);
@@ -73,8 +73,10 @@ export default function EventCard({ event }) {
           >
             Not going
           </button>
-          <button className="info-button">More info</button>
-          {/* <Link to={`/events/${event.id}`}>More info</Link> */}
+          <button className="info-button">
+            {" "}
+            <Link to={`/events/${event.id}`}>More info</Link>
+          </button>
         </div>
       )}
     </li>
