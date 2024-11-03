@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
-import { useAddInterestMutation } from "../interests/interestSlice";
+import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
 
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
@@ -113,6 +113,7 @@ function ProfileSingleDetail({ label, type, value }) {
 };
 
 function ProfileInterestsDetail({ label, type, values}) {
+    const { data: interests } = useGetInterestsQuery();
     const [input, setInput] = useState("");
     const [response, setResponse] = useState("");
 
@@ -126,6 +127,20 @@ function ProfileInterestsDetail({ label, type, values}) {
             const interestResponse = await addInterest({ interest: input });
             const interestConnectMeResponse = await updateMe({ interestToConnect: interestResponse.data });
             if (!interestResponse.error && !interestConnectMeResponse.error) {
+                setInput("");
+                setResponse("Saved!");
+            } else {
+                setResponse(interestConnectMeResponse.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    async function sendExistingInterest(interest) {
+        try {
+            const interestConnectMeResponse = await updateMe({ interestToConnect: interest });
+            if (!interestConnectMeResponse.error) {
                 setInput("");
                 setResponse("Saved!");
             } else {
@@ -164,6 +179,10 @@ function ProfileInterestsDetail({ label, type, values}) {
                 autoComplete="given-name"
             />
             <button>Add</button>
+            {input.length > 0 && <ul>
+                {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
+                    .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+            </ul>}
             {response && <p>{response}</p>}
         </form>
     </>)
