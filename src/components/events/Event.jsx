@@ -21,6 +21,8 @@ export default function Event() {
         return <p>Error loading event: {userError?.message || eventError?.message}</p>;
     }
 
+    console.log(user);
+
     async function attendanceSwitch() {
         if (!event || !user) return;
 
@@ -44,13 +46,13 @@ export default function Event() {
                     <img src={event.logo} alt={`${event.name} logo`} className="event-logo" />
                 </li>
                 <li className="event-information">
+                    <div>
                     <time dateTime={event.startTime}>{new Date(event.startTime).toLocaleString()}</time> - 
                     <time dateTime={event.endTime}>{new Date(event.endTime).toLocaleString()}</time>
                     <p>Location: {event.venue}</p>
                     <p>Tickets: <a href={event.url} target="_blank" rel="noopener noreferrer">{event.url}</a></p>
                     <p>Category: {event.category}</p>
-                </li>
-                <li>
+                    </div>
                     <label htmlFor="filter" className="switch" aria-label="Toggle Filter">
                         <input
                             type="checkbox"

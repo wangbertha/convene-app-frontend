@@ -4,7 +4,7 @@ body {
 .event-details {
   background-color: var(--convene-white);
   color: var(--convene-blue);
-  max-width: 600px;
+  max-width: 70%;
   padding: 4rem;
   border: 1px solid var(--convene-gray);
   border-radius: 8px;
@@ -15,6 +15,20 @@ body {
   color: var(--convene-blue);
   font-size: 1.8em;
   margin-bottom: 10px;
+}
+
+.event-details img {
+  box-shadow: 0 1px 8px var(--convene-blue);
+}
+
+.event-information {
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--convene-pink), var(--convene-gray), var(--convene-white), var(--convene-blue));
+  border-radius: 8px;
+  box-shadow: 0 1px 8px var(--convene-blue);
 }
 
 .event-logo {
@@ -49,6 +63,7 @@ body {
 
 .attendees {
   margin-top: 20px;
+  
 }
 
 .attendees h3 {
@@ -71,6 +86,7 @@ body {
   margin-bottom: 10px;
   background-color: var(--convene-gray);
   border-radius: 8px;
+  box-shadow: 0 1px 8px var(--convene-blue);
 }
 
 .profile-picture {
@@ -96,13 +112,11 @@ body {
 /* https://uiverse.io/cbolson/slippery-treefrog-30 */
 .switch {
   --_switch-bg-clr: var(--convene-blue);
-  --_switch-padding: 4px; /* padding around button*/
-
+  --_switch-padding: 4px;
   --_slider-bg-clr: var(--convene-gray); 
   --_slider-bg-clr-on: var(--convene-pink); 
-
   --_slider-txt-clr: #ffffff;
-  --_label-padding: 1rem 1.5rem; 
+  --_label-padding: 13px 13px; 
   --_switch-easing: cubic-bezier(
     0.47,
     1.64,
