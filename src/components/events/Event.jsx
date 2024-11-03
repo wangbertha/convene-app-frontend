@@ -1,22 +1,17 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useGetMeQuery } from "../users/userSlice";
 import { useGetEventQuery, useUpdateEventMutation } from "./eventsSlice";
 import "../../styles/event.css";
 
 export default function Event() {
     const { id } = useParams();
-    const { data: user, isLoading: isLoadingUser, error: userError } = useGetMeQuery();
+    const { data: user, isLoading: isLoadingUser, error: userError, refetch: refetchUser } = useGetMeQuery();
     const { data: event, isLoading: isLoadingEvent, error: eventError } = useGetEventQuery(id);
 
     const [updateAttendance] = useUpdateEventMutation();
-    const [isAttending, setIsAttending] = useState(event?.isAttending || false);
-
-    useEffect(() => {
-        if (event) {
-            setIsAttending(event.isAttending);
-        }
-    }, [event]);
+    const isAttending = event && user
+        ? user.attendingEvents?.some((attendingEvent) => attendingEvent.id === event.id)
+        : false;
 
     if (isLoadingUser || isLoadingEvent) {
         return <p>Loading event details...</p>;
@@ -25,22 +20,22 @@ export default function Event() {
     if (userError || eventError) {
         return <p>Error loading event: {userError?.message || eventError?.message}</p>;
     }
-    
+
     async function attendanceSwitch() {
         if (!event || !user) return;
 
         try {
-            setIsAttending(!isAttending);
             await updateAttendance({
                 id: event.id,
                 attending: !isAttending,
-            });
-        } catch (e) {
-            console.error("Failed to update attendance:", e);
-            setIsAttending(isAttending);
+            }).unwrap();
+            
+            await refetchUser();
+        } catch (error) {
+            console.error("Error updating attendance:", error);
         }
     }
-
+    
     return (
         <main className="event-details">
             <ul>
@@ -63,8 +58,8 @@ export default function Event() {
                             checked={isAttending}
                             onChange={attendanceSwitch}
                         />
-                        <span>Attending</span>
                         <span>Not Attending</span>
+                        <span>Attending</span>
                     </label>
                 </li>
             </ul>
@@ -73,14 +68,16 @@ export default function Event() {
                 <h3>Attendees</h3>
                 <ul className="attendees-list">
                     {event.attendingUsers.map(user => (
-                        <li key={user.id} className="attendee">
-                            <img src={user.profilePicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
-                            <div>
-                                <p><strong>{user.firstname} {user.lastname}</strong></p>
-                                <p>{user.bio}</p>
-                                <p>{user.city}, {user.state}</p>
-                            </div>
-                        </li>
+                        <Link to={`/profile/${user.id}`}>
+                            <li key={user.id} className="attendee">
+                                <img src={user.profilePicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
+                                <div>
+                                    <p><strong>{user.firstname} {user.lastname}</strong></p>
+                                    <p>{user.bio}</p>
+                                    <p>{user.city}, {user.state}</p>
+                                </div>
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </section>

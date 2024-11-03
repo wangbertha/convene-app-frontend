@@ -91,22 +91,24 @@ body {
   color: var(--convene-pink);
 }
 
-/* css for  */
-
+/* css for the switch */
 /* From Uiverse.io by cbolson */ 
+/* https://uiverse.io/cbolson/slippery-treefrog-30 */
 .switch {
-  --_switch-bg-clr: #70a9c5;
+  --_switch-bg-clr: var(--convene-blue);
   --_switch-padding: 4px; /* padding around button*/
-  --_slider-bg-clr: rgba(12, 74, 110, 0.65); /* slider color unchecked */
-  --_slider-bg-clr-on: rgba(12, 74, 110, 1); /* slider color checked */
+
+  --_slider-bg-clr: var(--convene-gray); 
+  --_slider-bg-clr-on: var(--convene-pink); 
+
   --_slider-txt-clr: #ffffff;
-  --_label-padding: 1rem 2rem; /* padding around the labels -  this gives the switch it's global width and height */
+  --_label-padding: 1rem 1.5rem; 
   --_switch-easing: cubic-bezier(
     0.47,
     1.64,
     0.41,
     0.8
-  ); /* easing on toggle switch */
+  );
   color: white;
   width: fit-content;
   display: flex;
@@ -144,7 +146,7 @@ body {
   border-radius: inherit;
   transition: inset 150ms ease-in-out;
 }
-/* switch slider */
+
 .switch::before {
   background-color: var(--_slider-bg-clr);
   inset: var(--_switch-padding) 50% var(--_switch-padding)
@@ -157,13 +159,13 @@ body {
     inset 0 1px 1px rgba(0, 0, 0, 0.3),
     0 1px rgba(255, 255, 255, 0.3);
 }
-/* switch bg color */
+
 .switch::after {
   background-color: var(--_switch-bg-clr);
   inset: 0;
   z-index: -2;
 }
-/* switch hover & focus */
+
 .switch:focus-within::after {
   inset: -0.25rem;
 }
@@ -173,7 +175,7 @@ body {
   transition-delay: 0ms;
   transition-duration: 100ms;
 }
-/* switch hover */
+
 .switch:has(input:checked):hover::before {
   inset: var(--_switch-padding) var(--_switch-padding) var(--_switch-padding)
     45%;
@@ -182,13 +184,13 @@ body {
   inset: var(--_switch-padding) 45% var(--_switch-padding)
     var(--_switch-padding);
 }
-/* checked - move slider to right */
+
 .switch:has(input:checked)::before {
   background-color: var(--_slider-bg-clr-on);
   inset: var(--_switch-padding) var(--_switch-padding) var(--_switch-padding)
     50%;
 }
-/* checked - set opacity */
+
 .switch > span:last-of-type,
 .switch > input:checked + span:first-of-type {
   opacity: 0.75;
