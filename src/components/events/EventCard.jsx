@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { selectToken } from "../auth/authSlice";
 import { useUpdateEventMutation } from "./eventsSlice";
 import { useState, useEffect } from "react";
 
@@ -9,8 +8,6 @@ import { useGetMeQuery } from "../users/userSlice";
 export default function EventCard({ event }) {
   const date = event.startTime.slice(0, 10);
   const time = event.startTime.slice(11, 19);
-
-  const token = useSelector(selectToken);
 
   const { data: user, isLoading, error } = useGetMeQuery();
   console.log(user);
@@ -60,7 +57,7 @@ export default function EventCard({ event }) {
         </p>
       </div>
       <div className="event-buttons">
-        {token && (
+        {user && (
           <div className="switch-container">
             <button
               className={
