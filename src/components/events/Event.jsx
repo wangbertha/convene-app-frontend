@@ -21,8 +21,6 @@ export default function Event() {
         return <p>Error loading event: {userError?.message || eventError?.message}</p>;
     }
 
-    console.log(user);
-
     async function attendanceSwitch() {
         if (!event || !user) return;
 
