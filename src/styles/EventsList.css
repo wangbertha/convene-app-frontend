@@ -1,18 +1,31 @@
-main {
+.main-eventlist {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin: 1rem auto;
-
   max-width: 80%;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.upcoming-events {
+  color: var(--convene-blue);
+
+  margin: 0 0 1rem;
+}
+
+.event-name {
+  color: var(--convene-pink);
 }
 
 .event-list {
   gap: 1rem;
+
+  color: var(--convene-blue);
 }
 
-.event-details {
+.event-details-div {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -32,42 +45,69 @@ main {
   padding: 10px 5px;
   margin: 0 0 1rem;
 
-  border: 1px solid blueviolet;
+  background: var(--convene-gray);
+  border-radius: 10px;
 }
 
 .event-card a {
   text-decoration: none;
-  color: rgb(156, 47, 47);
 }
 
 /* buttons css */
 
-.going-buttons {
+.event-buttons {
   display: flex;
-  gap: 5px;
+  gap: 10px;
+
+  flex-wrap: wrap;
 }
 
-.going-buttons button {
-  padding: 5px;
+.switch-container {
+  position: relative;
+  display: flex;
+}
+
+.switch-button {
+  flex: 1;
   border: none;
-  border-radius: 5px;
+
+  background-color: var(--convene-white);
+  color: var(--convene-pink);
+  font-weight: bold;
+
+  cursor: pointer;
+  outline: none;
+  position: relative;
+
+  transition: background-color 0.3s ease;
 }
 
-.going-buttons button:active {
-  scale: 1.1;
+.switch-button.left {
+  border-radius: 15px 0 0 15px;
+}
+
+.switch-button.right {
+  border-radius: 0 15px 15px 0;
+}
+
+/* Change button colors on hover */
+.event-buttons button:hover,
+.event-buttons a:hover {
+  background-color: var(--convene-pink);
+
+  color: var(--convene-white);
 }
 
 .info-button {
-  background-color: rgb(206, 200, 200);
-  color: red;
+  background-color: white;
+  color: var(--convene-pink);
+
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
 }
 
-.selected-button {
-  background-color: red;
-  color: white;
-}
-
-.not-selected-button {
-  background-color: rgb(206, 200, 200);
-  color: red;
+.selected {
+  background: #ccc;
+  color: var(--convene-blue);
 }
