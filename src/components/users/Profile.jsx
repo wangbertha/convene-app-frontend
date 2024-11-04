@@ -26,8 +26,10 @@ export default function Profile() {
     return (
         <main>
             <h1>{user.firstname} {user.lastname ?? user.lastname}</h1>
-            <img src={user.profilePicture ? user.profilePicture : ""} alt="Your (logged-in user) profile picture" />
             <ul className="profile-list">
+                <li className="profile-picture">
+                    <ProfilePictureDetail label="Profile Picture" type="profilePicture" value={user.profilePicture} />
+                </li>
                 <li>
                     <ProfileTextDetail label="First Name" type="firstname" value={user.firstname} />
                 </li>
@@ -105,12 +107,62 @@ function ProfileTextDetail({ label, type, value }) {
                 <button>Save</button>
                 {response && <p>{response}</p>}
             </form>
-            <button onClick={() => {setIsEditing(false); setInput("")}}>Cancel</button>
+            <button onClick={() => {setIsEditing(false); setInput(value); setResponse("Canceled")}}>Cancel</button>
         </>)
     }
 
     return (<>
         <p>{label}: {value ? value : "<blank>"}</p>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        {response && <p>{response}</p>}
+    </>)
+};
+
+function ProfilePictureDetail({ label, type, value }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [input, setInput] = useState(value || "");
+    const [response, setResponse] = useState("");
+
+    const [updateMe] = useUpdateMeMutation();
+
+    async function sendUpdateMe(e) {
+        e.preventDefault();
+
+        try {
+            const response = await updateMe({ [type]: input, });
+            if (!response.error) {
+                setIsEditing(false);
+                setResponse("Saved!");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    if (isEditing) {
+        return (<>
+            <img src={value ? value : ""} alt="Your (logged-in user) profile picture" />
+            <form onSubmit={sendUpdateMe}>
+                <label>{label} 
+                    <input
+                        placeholder={label}
+                        type="text"
+                        value={input}
+                        onChange={(event) => setInput(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <button>Save</button>
+                {response && <p>{response}</p>}
+            </form>
+            <button onClick={() => {setIsEditing(false); setInput(value); setResponse("Canceled")}}>Cancel</button>
+        </>)
+    }
+
+    return (<>
+        <img src={value ? value : ""} alt="Your (logged-in user) profile picture" />
         <button onClick={() => setIsEditing(true)}>Edit</button>
         {response && <p>{response}</p>}
     </>)
@@ -155,7 +207,7 @@ function ProfileOptionsDetail({ label, type, value, options }) {
                 <button>Save</button>
                 {response && <p>{response}</p>}
             </form>
-            <button onClick={() => {setIsEditing(false); setInput("")}}>Cancel</button>
+            <button onClick={() => {setIsEditing(false); setInput(value); setResponse("Canceled")}}>Cancel</button>
         </>)
     }
 
@@ -216,7 +268,7 @@ function ProfilePasswordDetail({ label }) {
                 <button>Save</button>
                 {response && <p>{response}</p>}
             </form>
-            <button onClick={() => {setIsEditing(false); setCurrentPassword(""); setNewPassword("")}}>Cancel</button>
+            <button onClick={() => {setIsEditing(false); setCurrentPassword(""); setNewPassword(""); setResponse("Canceled")}}>Cancel</button>
         </>)
     }
 
@@ -276,7 +328,7 @@ function ProfileLocationDetail({ label, value }) {
                 <button>Save</button>
                 {response && <p>{response}</p>}
             </form>
-            <button onClick={() => {setIsEditing(false); setCity(""); setState("")}}>Cancel</button>
+            <button onClick={() => {setIsEditing(false); setCity(value.city); setState(value.state); setResponse("Canceled")}}>Cancel</button>
         </>)
     }
 
