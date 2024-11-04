@@ -19,7 +19,8 @@ export default function Profile() {
     }
 
     if (error) {
-        return <p>{error.error || "We ran into an error :("}</p>
+        console.log(error);
+        return <p>{error.data || "We ran into an error :("}</p>
     }
 
     return (
