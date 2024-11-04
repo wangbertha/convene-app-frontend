@@ -6,20 +6,14 @@ import LandingPage from './pages/landingPage';
 import LoginPage from './pages/LoginPage';
 import BrowseProfiles from './pages/BrowseProfiles';
 import './App.css';
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/browse" element={<BrowseProfiles />} />
-      </Routes>
-      <Footer />
-    </Router>
-  );
+    <>
+    </>
+  )
 }
 
 export default App;
-
