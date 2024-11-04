@@ -10,19 +10,19 @@ export default function Inbox() {
       <div className="inboxMain">
         <aside className="conversations">
           <h3>Conversations</h3>
-          <div classname="convoCard">
+          <div className="convoCard">
             <h4>John Johnson</h4>
             <p>last message was ...</p>
           </div>
-          <div classname="convoCard">
+          <div className="convoCard">
             <h4>Bob Johnson</h4>
             <p>last message was ...</p>
           </div>
-          <div classname="convoCard">
+          <div className="convoCard">
             <h4>Sarah Johnson</h4>
             <p>last message was ...</p>
           </div>
-          <div classname="convoCard">
+          <div className="convoCard">
             <h4>Joe Johnson</h4>
             <p>last message was ...</p>
           </div>
@@ -41,7 +41,7 @@ export default function Inbox() {
           <p className="sent message">This is a test sent message</p>
           <p className="recieved message">This is a test Received message</p>
           <p className="sent message">This is a test sent message</p>
-          <div classname="compose">
+          <div className="compose">
             <input className="newMessage" type="text" />
             <button className="send">Send</button>
           </div>
