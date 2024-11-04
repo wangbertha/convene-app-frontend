@@ -12,6 +12,14 @@ export default function Inbox() {
         <p className="sent message">This is a test sent message</p>
         <p className="recieved message">This is a test Received message</p>
         <p className="sent message">This is a test sent message</p>
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
+        <p className="recieved message">This is a test Received message</p>
+        <p className="sent message">This is a test sent message</p>
       </article>
     </>
   );

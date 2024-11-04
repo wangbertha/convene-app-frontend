@@ -4,6 +4,7 @@
   background-color: var(--convene-pink);
   width: 50%;
   margin: auto;
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   padding: 0.5em;
@@ -13,19 +14,22 @@
 .recieved {
   background-color: var(--convene-gray);
   color: var(--convene-blue);
-  width: 20%;
 }
 
 .sent {
   margin-left: auto;
   background-color: var(--convene-pink);
   color: var(--convene-blue);
-  width: 20%;
 }
 
 .message {
   border-radius: 10px;
   padding: 0.4em;
+  width: auto;
+  max-width: 45%;
+  gap: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .conversation {
@@ -33,4 +37,6 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 3em;
+  background-color: black;
+  padding: 0.5em;
 }
