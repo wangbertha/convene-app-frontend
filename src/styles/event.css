@@ -1,8 +1,5 @@
-body {
-  font-family: Arial, sans-serif;
-}
 .event-details {
-  background-color: var(--convene-white);
+  /*background-color: var(--convene-white);*/
   color: var(--convene-blue);
   max-width: 70%;
   padding: 4rem;
@@ -15,6 +12,7 @@ body {
   color: var(--convene-blue);
   font-size: 1.8em;
   margin-bottom: 10px;
+  border-bottom: 2px solid var(--convene-pink);
 }
 
 .event-details img {
@@ -57,10 +55,6 @@ body {
   text-decoration: none;
 }
 
-.event-details a:hover {
-  text-decoration: underline;
-}
-
 .attendees {
   margin-top: 20px;
   
@@ -75,18 +69,12 @@ body {
 }
 
 .attendees-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 3ch;
   list-style-type: none;
   padding: 0;
-}
-
-.attendee {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: var(--convene-gray);
-  border-radius: 8px;
-  box-shadow: 0 1px 8px var(--convene-blue);
 }
 
 .profile-picture {
@@ -211,4 +199,121 @@ body {
 }
 .switch > input:checked ~ span:last-of-type {
   opacity: 1;
+}
+
+/* Animation for on hover user */ 
+.attendee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 1rem;
+  width: 250px;
+  height: 250px;
+  background: var(--convene-white);
+  border-radius: 8px;
+  letter-spacing: 2px;
+  box-shadow: 0 0 25px 0px var(--convene-gray);
+  transition: 1s box-shadow;
+}
+
+.attendee:hover {
+  box-shadow: 0 0px 80px 0px var(--convene-pink);
+}
+
+.attendee:hover::before, .attendee:hover::after {
+  display: block;
+  content: '';
+  position: absolute;
+  padding: 1rem;
+  width: 250px;
+  height: 250px;
+  background: var(--convene-pink);
+  border-radius: 8px;
+  z-index: -1;
+  animation: 1s clockwise infinite;
+}
+
+.attendee:hover:after {
+  background: var(--convene-blue);
+  animation: 2s counterclockwise infinite;
+}
+
+@keyframes clockwise {
+  0% {
+    top: -5px;
+    left: 0;
+  }
+  12% {
+    top: -2px;
+    left: 2px;
+  }
+  25% {
+    top: 0;
+    left: 5px;    
+  }
+  37% {
+    top: 2px;
+    left: 2px;
+  }
+  50% {
+    top: 5px;
+    left: 0;    
+  }
+  62% {
+    top: 2px;
+    left: -2px;
+  }
+  75% {
+    top: 0;
+    left: -5px;
+  }
+  87% {
+    top: -2px;
+    left: -2px;
+  }
+  100% {
+    top: -5px;
+    left: 0;    
+  }
+}
+
+@keyframes counterclockwise {
+  0% {
+    top: -5px;
+    right: 0;
+  }
+  12% {
+    top: -2px;
+    right: 2px;
+  }
+  25% {
+    top: 0;
+    right: 5px;    
+  }
+  37% {
+    top: 2px;
+    right: 2px;
+  }
+  50% {
+    top: 5px;
+    right: 0;    
+  }
+  62% {
+    top: 2px;
+    right: -2px;
+  }
+  75% {
+    top: 0;
+    right: -5px;
+  }
+  87% {
+    top: -2px;
+    right: -2px;
+  }
+  100% {
+    top: -5px;
+    right: 0;    
+  }
 }
