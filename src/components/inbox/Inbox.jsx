@@ -7,20 +7,46 @@ export default function Inbox() {
       <h2 className="placeholder">
         This is a placeholder for our messaging app. Your inbox will go here.
       </h2>
-      <article className="conversation">
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-        <p className="recieved message">This is a test Received message</p>
-        <p className="sent message">This is a test sent message</p>
-      </article>
+      <div className="inboxMain">
+        <aside className="conversations">
+          <h3>Conversations</h3>
+          <div classname="convoCard">
+            <h4>John Johnson</h4>
+            <p>last message was ...</p>
+          </div>
+          <div classname="convoCard">
+            <h4>Bob Johnson</h4>
+            <p>last message was ...</p>
+          </div>
+          <div classname="convoCard">
+            <h4>Sarah Johnson</h4>
+            <p>last message was ...</p>
+          </div>
+          <div classname="convoCard">
+            <h4>Joe Johnson</h4>
+            <p>last message was ...</p>
+          </div>
+        </aside>
+        <article className="conversation">
+          <h3 className="convoWith">John Johnson</h3>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <p className="recieved message">This is a test Received message</p>
+          <p className="sent message">This is a test sent message</p>
+          <div classname="compose">
+            <input className="newMessage" type="text" />
+            <button className="send">Send</button>
+          </div>
+        </article>
+      </div>
     </>
   );
 }
