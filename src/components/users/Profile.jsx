@@ -1,13 +1,18 @@
-import { useGetMeQuery } from "./userSlice";
+import { useGetMeQuery, useUpdatePasswordMutation } from "./userSlice";
 
 import { useState } from "react"
 import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
+import EventCard from "../events/EventCard";
 
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
+
+    const genderOptions = ["Male", "Female", "Nonbinary", "Other"];
+    const lookingForOptions = ["Friends", "Romantic Partner", "Other"];
+    const genderPreferenceOptions = ["Male", "Female", "Any"];
 
     if (isLoading) {
         return <p>Loading profile...</p>;
@@ -23,46 +28,45 @@ export default function Profile() {
             <img src={user.profilePicture ? user.profilePicture : ""} alt="Your (logged-in user) profile picture" />
             <ul className="profile-list">
                 <li>
-                    <ProfileSingleDetail label="First Name" type="firstname" value={user.firstname} />
+                    <ProfileTextDetail label="First Name" type="firstname" value={user.firstname} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Last Name" type="lastname" value={user.lastname} />
+                    <ProfileTextDetail label="Last Name" type="lastname" value={user.lastname} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Email" type="email" value={user.email} />
+                    <ProfileTextDetail label="Email" type="email" value={user.email} />
                 </li>
                 <li className="profile-password">
+                    <ProfilePasswordDetail label="Password" />
                 </li>
                 <li className="profile-bio">
-                    <ProfileSingleDetail label="Bio" type="bio" value={user.bio} />
+                    <ProfileTextDetail label="Bio" type="bio" value={user.bio} />
                 </li>
                 <li className="profile-location">
-                    <p>Location:</p>
-                    <p>City: {user.city}</p>
-                    <p>State: {user.state}</p>
+                    <ProfileLocationDetail label="Location" value={{ city: user.city, state: user.state }} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Age" type="age" value={user.age} />
+                    <ProfileTextDetail label="Age" type="age" value={user.age} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Gender" type="gender" value={user.gender} />
+                    <ProfileOptionsDetail label="Gender" type="gender" value={user.gender} options={genderOptions} />
                 </li>
                 <li className="profile-interests">
-                    <ProfileInterestsDetail label="Interests" type="interests" values={user.interests} />
+                    <ProfileInterestsDetail label="Interests" values={user.interests} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Looking For" type="lookingFor" value={user.lookingFor} />
+                    <ProfileOptionsDetail label="Looking For" type="lookingFor" value={user.lookingFor} options={lookingForOptions} />
                 </li>
                 <li>
-                    <ProfileSingleDetail label="Gender Preference" type="genderPreference" value={user.genderPreference} />
+                    <ProfileOptionsDetail label="Gender Preference" type="genderPreference" value={user.genderPreference} options={genderPreferenceOptions} />
                 </li>
-                {/* TODO: attendingEvents */}
             </ul>
+            <ProfileEventsDetail label="Attending Events" type="attendingEvents" values={user.attendingEvents} />
         </main>
     )
 }
 
-function ProfileSingleDetail({ label, type, value }) {
+function ProfileTextDetail({ label, type, value }) {
     const [isEditing, setIsEditing] = useState(false);
     const [input, setInput] = useState(value || "");
     const [response, setResponse] = useState("");
@@ -85,34 +89,206 @@ function ProfileSingleDetail({ label, type, value }) {
         }
     }
 
-    return (<>
-        {isEditing
-            ? <>
-                <form onSubmit={sendUpdateMe}>
-                    <label>{label} 
-                        <input
-                            placeholder={label}
-                            type="text"
-                            value={input}
-                            onChange={(event) => setInput(event.target.value)}
-                            autoComplete="given-name"
-                        />
-                    </label>
-                    <button>Save</button>
-                    {response && <p>{response}</p>}
-                </form>
-                <button onClick={() => {setIsEditing(false); setInput("")}}>Cancel</button>
-            </>
-            : <>
-                <p>{label}: {value ? value : "<blank>"}</p>
-                <button onClick={() => setIsEditing(true)}>Edit</button>
+    if (isEditing) {
+        return (<>
+            <form onSubmit={sendUpdateMe}>
+                <label>{label} 
+                    <input
+                        placeholder={label}
+                        type="text"
+                        value={input}
+                        onChange={(event) => setInput(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <button>Save</button>
                 {response && <p>{response}</p>}
-            </>
-        }
+            </form>
+            <button onClick={() => {setIsEditing(false); setInput("")}}>Cancel</button>
+        </>)
+    }
+
+    return (<>
+        <p>{label}: {value ? value : "<blank>"}</p>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        {response && <p>{response}</p>}
     </>)
 };
 
-function ProfileInterestsDetail({ label, type, values}) {
+function ProfileOptionsDetail({ label, type, value, options }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [input, setInput] = useState(value || "");
+    const [response, setResponse] = useState("");
+
+    const [updateMe] = useUpdateMeMutation();
+
+    async function sendUpdateMe(e) {
+        e.preventDefault();
+
+        try {
+            const response = await updateMe({ [type]: input, });
+            if (!response.error) {
+                setIsEditing(false);
+                setResponse("Saved!");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    if (isEditing) {
+        return (<>
+            <form onSubmit={sendUpdateMe}>
+                <label>{label}:
+                    <select  value={input} onChange={(e) => setInput(e.target.value)}>
+                        <option value="">Please select an option</option>
+                        {options.map((option) => 
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        )}
+                    </select>
+                </label>
+                <button>Save</button>
+                {response && <p>{response}</p>}
+            </form>
+            <button onClick={() => {setIsEditing(false); setInput("")}}>Cancel</button>
+        </>)
+    }
+
+    return (<>
+        <p>{label}: {value ? value : "<blank>"}</p>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        {response && <p>{response}</p>}
+    </>)
+};
+
+function ProfilePasswordDetail({ label }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [response, setResponse] = useState("");
+
+    const [updatePassword] = useUpdatePasswordMutation();
+
+    async function sendUpdatePassword(e) {
+        e.preventDefault();
+
+        try {
+            const response = await updatePassword({ currentPassword, newPassword });
+            if (!response.error) {
+                setIsEditing(false);
+                setResponse(response.data.message);
+                setCurrentPassword("");
+                setNewPassword("");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    if (isEditing) {
+        return (<>
+            <form onSubmit={sendUpdatePassword}>
+                <label>Current Password
+                    <input
+                        placeholder="Current Password"
+                        type="password"
+                        value={currentPassword}
+                        onChange={(event) => setCurrentPassword(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <label>New Password
+                    <input
+                        placeholder="New Password"
+                        type="password"
+                        value={newPassword}
+                        onChange={(event) => setNewPassword(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <button>Save</button>
+                {response && <p>{response}</p>}
+            </form>
+            <button onClick={() => {setIsEditing(false); setCurrentPassword(""); setNewPassword("")}}>Cancel</button>
+        </>)
+    }
+
+    return (<>
+        <p>{label}: ****</p>
+        <button onClick={() => setIsEditing(true)}>Change Password</button>
+        {response && <p>{response}</p>}
+    </>)
+};
+
+function ProfileLocationDetail({ label, value }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [city, setCity] = useState(value.city || "");
+    const [state, setState] = useState(value.state || "");
+    const [response, setResponse] = useState("");
+
+    const [updateMe] = useUpdateMeMutation();
+
+    async function sendUpdateMe(e) {
+        e.preventDefault();
+
+        try {
+            const response = await updateMe({ city, state });
+            if (!response.error) {
+                setIsEditing(false);
+                setResponse("Saved!");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    if (isEditing) {
+        return (<>
+            <form onSubmit={sendUpdateMe}>
+                <p>{label}:</p>
+                <label>City: 
+                    <input
+                        placeholder="City"
+                        type="text"
+                        value={city}
+                        onChange={(event) => setCity(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <label>State: 
+                    <input
+                        placeholder="State"
+                        type="text"
+                        value={state}
+                        onChange={(event) => setState(event.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <button>Save</button>
+                {response && <p>{response}</p>}
+            </form>
+            <button onClick={() => {setIsEditing(false); setCity(""); setState("")}}>Cancel</button>
+        </>)
+    }
+
+    return (<>
+        <p>{label}:</p>
+        <p>City: {city ? city : "<blank>"}</p>
+        <p>State: {state ? state : "<blank>"}</p>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+        {response && <p>{response}</p>}
+    </>);
+}
+
+function ProfileInterestsDetail({ label, values }) {
     const { data: interests } = useGetInterestsQuery();
     const [input, setInput] = useState("");
     const [response, setResponse] = useState("");
@@ -179,11 +355,26 @@ function ProfileInterestsDetail({ label, type, values}) {
                 autoComplete="given-name"
             />
             <button>Add</button>
-            {input.length > 0 && <ul>
+            {interests && (input.length > 0
+            ? <ul>
                 {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
                     .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
-            </ul>}
+                </ul>
+            : <>
+                <p>Suggestions:</p>
+                <ul>
+                    {interests.slice(0,5).map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+                </ul>
+            </>)}
             {response && <p>{response}</p>}
         </form>
+    </>)
+}
+
+function ProfileEventsDetail({ label, values }) {
+    return (<>
+    <p>{label}:</p>
+    {values ? values.map((event) => (<EventCard key={event.id} event={event}/>))
+    : <p>Add events to your profile!</p>}
     </>)
 }
