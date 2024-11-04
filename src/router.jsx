@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Root from "./layout/root";
 import EventsList from "./components/events/EventList";
+import Auth from "./components/auth/Auth";
 import Event from "./components/events/Event";
 import Inbox from "./components/inbox/Inbox";
 import Auth from "./components/auth/Auth";
