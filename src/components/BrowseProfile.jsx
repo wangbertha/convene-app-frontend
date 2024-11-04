@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProfileCard from '../components/ProfileCard';
+import ProfileCard from '../layout/ProfileCard';
 import '../styles/BrowseProfiles.css';
 
 export default function BrowseProfiles() {

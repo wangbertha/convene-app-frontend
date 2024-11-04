@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './src/components/Navbar';
-import Footer from './src/components/Footer';
-import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import BrowseProfiles from './pages/BrowseProfiles';
+import Navbar from './src/layout/Navbar';
+import Footer from './src/layout/Footer';
+import LandingPage from './components/LandingPage';
+import BrowseProfiles from './components/BrowseProfiles';
 import './App.css';
 
 function App() {
