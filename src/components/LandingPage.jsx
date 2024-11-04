@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
 import '../styles/global.css';
 
 export default function LandingPage() {
@@ -15,7 +14,7 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       <div className={`logo-popup ${fadeOut ? 'fade-out' : ''}`} onClick={handleClick}>
-        <img src={logo} alt="Convene Logo" className="logo" />
+        <img src="/popcorn_pals_convene.png" alt="Convene Logo" className="logo" />
       </div>
     </div>
   );

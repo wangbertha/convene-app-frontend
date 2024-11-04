@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProfileCard from '../layout/ProfileCard';
-import '../styles/BrowseProfiles.css';
+import '../styles/BrowseProfile.css';
 
 export default function BrowseProfiles() {
   const [profiles, setProfiles] = useState([]);
