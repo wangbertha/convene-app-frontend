@@ -1,7 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { logout, selectToken } from "../components/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    dispatch(logout());
+    navigate("/");
+  }
   return (
     <nav className="navbar">
       <Link to="/">CONVENE</Link>
@@ -12,6 +22,15 @@ export default function Navbar() {
         <Link to="/events">Events</Link>
         <Link to="/about">About</Link>
         <Link to="/userprefs">User Prefs</Link>
+        {token ? (
+          <a className="navBarLink" href="#" onClick={handleLogout}>
+            Log Out
+          </a>
+        ) : (
+          <Link className="navBarLink" to="/login">
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
