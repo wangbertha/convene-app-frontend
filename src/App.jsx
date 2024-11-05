@@ -6,7 +6,6 @@ import LandingPage from './components/LandingPage';
 import BrowseProfiles from './components/BrowseProfile';
 import Auth from './components/auth/Auth';
 import './App.css';
-import './App.css';
 
 function App() {
   return (
