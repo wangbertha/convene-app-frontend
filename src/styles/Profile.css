@@ -17,3 +17,7 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.profile-list .profile-picture {
+    height: 20rem;
+}
