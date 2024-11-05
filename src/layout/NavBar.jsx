@@ -23,11 +23,11 @@ export default function Navbar() {
         <Link to="/about">About</Link>
         <Link to="/userprefs">User Prefs</Link>
         {token ? (
-          <a className="navBarLink" href="#" onClick={handleLogout}>
+          <a href="#" onClick={handleLogout}>
             Log Out
           </a>
         ) : (
-          <Link className="navBarLink" to="/login">
+          <Link to="/login">
             Login
           </Link>
         )}
