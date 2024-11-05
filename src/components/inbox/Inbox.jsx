@@ -9,22 +9,22 @@ export default function Inbox() {
       </h2>
       <div className="inboxMain">
         <aside className="conversations">
-          <h3>Conversations</h3>
+          <h3 className="convos">Conversations</h3>
           <div className="convoCard">
             <h4>John Johnson</h4>
-            <p>last message was ...</p>
+            <p>Click to view conversation</p>
           </div>
           <div className="convoCard">
             <h4>Bob Johnson</h4>
-            <p>last message was ...</p>
+            <p>Click to view conversation</p>
           </div>
           <div className="convoCard">
             <h4>Sarah Johnson</h4>
-            <p>last message was ...</p>
+            <p>Click to view conversation</p>
           </div>
           <div className="convoCard">
             <h4>Joe Johnson</h4>
-            <p>last message was ...</p>
+            <p>Click to view conversation</p>
           </div>
         </aside>
         <article className="conversation">

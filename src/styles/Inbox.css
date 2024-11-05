@@ -32,7 +32,7 @@
 
 .convoWith {
   text-align: center;
-  background-color: var(--convene-gray);
+  /*  background-color: var(--convene-gray); */
   color: var(--convene-blue);
 }
 
@@ -41,21 +41,27 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 3em;
-  background-color: black;
+  background-color: lightgray;
+  border-radius: 10px;
   padding: 0.5em;
 }
 
 .inboxMain {
   display: flex;
   flex-direction: row;
+  width: 80%;
+  margin-left: auto;
+  margin-left: auto;
 }
 
 .conversations {
-  border: 2px solid black;
   width: 30%;
-  margin: auto;
   margin-top: 3em;
   height: 100%;
+  padding: 0.5em;
+  background-color: lightgray;
+  border-radius: 10px;
+  color: var(--convene-blue);
 }
 
 .compose {
@@ -67,6 +73,10 @@
 .newMessage {
   width: 90%;
   height: 2em;
+}
+
+.convos {
+  text-align: center;
 }
 
 .send {
