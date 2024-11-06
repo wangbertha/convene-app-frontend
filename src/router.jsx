@@ -6,6 +6,7 @@ import Auth from "./components/auth/Auth";
 import Event from "./components/events/Event";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
+import Chat from "./components/chat/ChatComponent";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "/events", element: <EventsList /> },
       { path: "/events/:id", element: <Event /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/chat", element: <Chat /> },
     ],
   },
 ]);
