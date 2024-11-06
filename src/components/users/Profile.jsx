@@ -8,6 +8,8 @@ import { useAddInterestMutation, useGetInterestsQuery } from "../interests/inter
 import EventCard from "../events/EventCard";
 import { Link, useNavigate } from "react-router-dom";
 
+import defaultPicture from "../../assets/default-photo.jpg";
+
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
 
@@ -122,7 +124,7 @@ function ProfilePictureDetail({ value }) {
     }
 
     return (<>
-        <img className="profile-picture" src={value ? value : ""} alt="Your (logged-in user) profile picture" />
+        <img className="profile-picture" src={value ? value : defaultPicture} alt="Your (logged-in user) profile picture" />
         <form onSubmit={sendUpdateMe}>
             {isEditing && <>
                 <label>
