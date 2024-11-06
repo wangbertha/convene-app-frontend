@@ -12,7 +12,7 @@ export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
 
     const genderOptions = ["Male", "Female", "Nonbinary", "Other"];
-    const lookingForOptions = ["Friends", "Romantic Partner", "Other"];
+    const lookingForOptions = ["Friends", "Romantic Partner", "Nonbinary", "Other"];
     const genderPreferenceOptions = ["Male", "Female", "Any"];
     const stateOptions = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN",
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM",
