@@ -6,6 +6,7 @@ import { useUpdateMeMutation } from "./userSlice";
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
 import EventCard from "../events/EventCard";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
@@ -471,7 +472,7 @@ function ProfileInterestsDetail({ label, values }) {
 function ProfileEventsDetail({ values }) {
     return (<>
         <h6 className="profile-attendingevents">Attending Events:</h6>
-        {values ? <ul>{values.map((event) => (<EventCard key={event.id} event={event}/>))}</ul>
-        : <p>Add events to your profile!</p>}
+        {values.length > 0 ? <ul>{values.map((event) => (<EventCard key={event.id} event={event}/>))}</ul>
+        : <p>You are currently not going to any events. <Link to="/events">Browse events here!</Link></p>}
     </>)
 }
