@@ -13,22 +13,21 @@ ul.list-bubbles {
   gap: 0.25rem;
 }
 
-.list-bubbles li {
+ul.list-bubbles li {
+  flex-direction: row;
+  gap: 0.25rem;
   font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem 0.25rem;
   color: var(--convene-white);
   background-color: var(--convene-pink);
   border-radius: 1rem;
 }
 
-.list-bubbles .list-bubble-delete {
+ul.list-bubbles .list-bubble-delete {
   height: 1rem;
   width: 1rem;
   line-height: 1rem;
   border-radius: 1rem;
   background-color: var(--convene-blue);
   color: var(--convene-pink);
-  position: relative;
-  left: 0.5rem;
-  bottom: 0.5rem;
 }
