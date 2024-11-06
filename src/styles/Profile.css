@@ -47,7 +47,8 @@
 }
 
 .profile-list span,
-.profile-list input {
+.profile-list input,
+.profile-list select {
     width: 10rem;
 }
 
@@ -79,6 +80,11 @@
     margin-bottom: 1rem;
 }
 
+.form-column-btns {
+    width: 100%;
+    display: flex;
+}
+
 .profile-password-detail form,
 .profile-location-detail form {
     display: flex;
@@ -102,9 +108,14 @@
     display: flex;
 }
 
-.form-column-btns {
+.profile-active-description {
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.profile-delete-detail h6 {
     width: 100%;
-    display: flex;
 }
 
 .profile-interests {

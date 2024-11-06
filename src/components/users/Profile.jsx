@@ -1,4 +1,4 @@
-import { useGetMeQuery, useUpdatePasswordMutation } from "./userSlice";
+import { useDeleteMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "./userSlice";
 
 import { useState } from "react"
 import { useUpdateMeMutation } from "./userSlice";
@@ -6,7 +6,7 @@ import { useUpdateMeMutation } from "./userSlice";
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
 import EventCard from "../events/EventCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
@@ -60,6 +60,12 @@ export default function Profile() {
                     </li>
                     <li>
                         <ProfileOptionsDetail label="Gender" type="gender" value={user.gender} options={genderOptions} />
+                    </li>
+                    <li>
+                        <ProfileActiveDetail value={user.profileActive} />
+                    </li>
+                    <li className="profile-delete-detail">
+                        <ProfileDeleteDetail />
                     </li>
                 </ul>
             </section>
@@ -385,6 +391,96 @@ function ProfileOptionsDetail({ label, type, value, options }) {
         <p className="profile-response">{response}</p>
     </>)
 };
+
+
+
+function ProfileActiveDetail({ value }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [input, setInput] = useState(value || "");
+    const [response, setResponse] = useState("");
+
+    const [updateMe] = useUpdateMeMutation();
+
+    function toggleIsEditing() {
+        if (!isEditing) {
+            setResponse("");
+        } else {
+            setResponse("Canceled");
+        }
+        setIsEditing(!isEditing); 
+        setInput(value);
+    }
+
+    async function sendUpdateMe(e) {
+        e.preventDefault();
+
+        try {
+            const response = await updateMe({ profileActive: input, });
+            if (!response.error) {
+                setIsEditing(false);
+                setResponse("Saved!");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    return (<>
+        <form onSubmit={sendUpdateMe}>
+            <label>
+                <h6>Profile Status:</h6>
+                {!isEditing ? <span>{value ? "Active" : "Inactive"}</span>
+                : <select value={input} onChange={(e) => setInput(e.target.value === "true")}>
+                    <option value={true}>Active</option>
+                    <option value={false}>Inactive</option>
+                </select>}
+            </label>
+            <div className="form-column-btns">
+                {isEditing && <button type="submit">Save</button>}
+                <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
+            </div>
+        </form>
+        <p className="profile-active-description">An active profile will be visible to other users, and will help you make the most of our services!</p>
+        <p className="profile-response">{response}</p>
+    </>)
+};
+
+function ProfileDeleteDetail() {
+    const [isEditing, setIsEditing] = useState(false);
+    const [response, setResponse] = useState("");
+
+    const [deleteMe] = useDeleteMeMutation();
+    const navigate = useNavigate();
+
+    function toggleIsEditing() {
+        setIsEditing(!isEditing);
+    }
+
+    async function sendDeleteMe() {
+        try {
+            await deleteMe();
+            if (!response.error) {
+                navigate("/login");
+            } else {
+                setResponse(response.error.data);
+            }
+        } catch (e) {
+            setResponse(e.error);
+        }
+    }
+
+    return (<>
+        <h6>Delete Account</h6>
+        {isEditing && <p>Are you sure you want to delete your account? This action cannot be undone.</p>}
+        <div className="form-column-btns">
+            {isEditing && <button onClick={sendDeleteMe}>Yes</button>}
+            <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Delete Account" : "No"}</button>
+        </div>
+        <p className="profile-response">{response}</p>
+    </>)
+}
 
 function ProfileInterestsDetail({ label, values }) {
     const { data: interests } = useGetInterestsQuery();
