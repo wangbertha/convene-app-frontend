@@ -102,6 +102,7 @@
 }
 
 .form-column-btns {
+    width: 100%;
     display: flex;
 }
 

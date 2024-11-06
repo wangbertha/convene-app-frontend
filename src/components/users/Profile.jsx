@@ -376,8 +376,10 @@ function ProfileOptionsDetail({ label, type, value, options }) {
                     )}
                 </select>}
             </label>
-            {isEditing && <button type="submit">Save</button>}
-            <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
+            <div className="form-column-btns">
+                {isEditing && <button type="submit">Save</button>}
+                <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
+            </div>
         </form>
         <p className="profile-response">{response}</p>
     </>)
