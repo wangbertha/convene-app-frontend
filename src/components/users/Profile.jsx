@@ -18,6 +18,7 @@ export default function Profile() {
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM",
         "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "UV", "VA", "WA", "WV",
         "WI", "WY", "DC", "GU", "MH", "MP", "PR", "VI"];
+    const ageOptions = Array.from({ length: 101}, (_, i) => i);
 
     if (isLoading) {
         return <p>Loading profile...</p>;
@@ -55,7 +56,7 @@ export default function Profile() {
                         <ProfileLocationDetail value={{ city: user.city, state: user.state }} stateOptions={stateOptions} />
                     </li>
                     <li>
-                        <ProfileTextDetail label="Age" type="age" value={user.age} />
+                        <ProfileOptionsDetail label="Age" type="age" value={user.age} options={ageOptions} />
                     </li>
                     <li>
                         <ProfileOptionsDetail label="Gender" type="gender" value={user.gender} options={genderOptions} />
