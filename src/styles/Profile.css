@@ -47,13 +47,15 @@
 }
 
 .profile-list span,
-.profile-list input {
+.profile-list input,
+.profile-list select {
     width: 10rem;
 }
 
 .profile-list button {
+    font-size: 0.75rem;
     width: 100%;
-    height: 1.5rem;
+    height: 1.25rem;
     color: var(--convene-white);
     background-color: var(--convene-blue);
     border: none;
@@ -76,6 +78,11 @@
     height: 10rem;
     width: 10rem;
     margin-bottom: 1rem;
+}
+
+.form-column-btns {
+    width: 100%;
+    display: flex;
 }
 
 .profile-password-detail form,
@@ -101,9 +108,14 @@
     display: flex;
 }
 
-.form-column-btns {
+.profile-active-description {
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.profile-delete-detail h6 {
     width: 100%;
-    display: flex;
 }
 
 .profile-interests {
