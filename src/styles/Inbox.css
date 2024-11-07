@@ -12,15 +12,21 @@
 .recieved {
   background-color: var(--convene-gray);
   color: var(--convene-blue);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .sent {
   margin-left: auto;
   background-color: var(--convene-pink);
   color: var(--convene-blue);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message {
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   padding: 0.4em;
   min-width: auto;
@@ -37,12 +43,15 @@
 
 .conversation {
   width: 50%;
+  max-height: 70vh;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3em;
   background-color: lightgray;
   border-radius: 10px;
   padding: 0.5em;
+
+  overflow-y: scroll;
 }
 
 .inboxMain {
@@ -61,6 +70,20 @@
   background-color: lightgray;
   border-radius: 10px;
   color: var(--convene-blue);
+}
+
+.chat-inputs {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  background-color: lightgray;
+  padding: 0.5em 0;
+}
+
+.conversation input {
+  padding: 0.1rem;
+  border-radius: 5px;
+  border: none;
 }
 
 .compose {
