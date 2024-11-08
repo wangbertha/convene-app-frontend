@@ -1,6 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetMeQuery } from "../users/userSlice";
 import { useGetEventQuery, useUpdateEventMutation } from "./eventsSlice";
+
+import defaultPicture from "../../assets/default-photo.jpg";
+
 import "../../styles/event.css";
 
 export default function Event() {
@@ -70,7 +73,7 @@ export default function Event() {
                     {event.attendingUsers.map(user => (
                         <Link to={`/profile/${user.id}`}>
                             <li key={user.id} className="attendee">
-                                <img src={user.profilePicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
+                                <img src={user.profilePicture ? user.profilePicture : defaultPicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
                                 <div>
                                     <p><strong>{user.firstname} {user.lastname}</strong></p>
                                     <p>{user.bio}</p>
