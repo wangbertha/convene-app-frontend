@@ -59,15 +59,18 @@ export default function Inbox() {
   }
 
   return (
-    <>
-      <h2 className="placeholder">
-        This is a placeholder for our messaging app. Your inbox will go here.
-      </h2>
-      <div className="inboxMain">
-        <aside className="conversations">
-          <h3 className="convos">Conversations</h3>
-          <div className="convoCard">
-            <h4>John Johnson</h4>
+    <div className="inboxMain">
+      <aside className="conversations">
+        <h3 className="convos">Conversations</h3>
+        {allConversations?.map((conversation) => (
+          <div
+            key={conversation.id}
+            className={`convoCard ${
+              activeConversation?.id === conversation.id ? "active" : ""
+            }`}
+            onClick={() => ConversationSelectHandler(conversation)}
+          >
+            <h4>{conversation.userName}</h4>
             <p>Click to view conversation</p>
           </div>
           <div className="convoCard">
