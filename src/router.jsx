@@ -8,6 +8,8 @@ import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
 import Chat from "./components/chat/ChatComponent";
 
+import Chat from "./components/chat/chatComponent";
+
 const router = createBrowserRouter([
   {
     path: "/",
