@@ -127,7 +127,7 @@
     margin-top: 1rem;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1080px) {
     .profile {
         flex-direction: row;
         align-items: start;
