@@ -37,7 +37,7 @@ export default function Event() {
     }
     
     return (
-        <main className="event-details">
+        <main className="page event-details">
             <ul>
                 <li><h2>{event.name}</h2></li>
                 <li>
