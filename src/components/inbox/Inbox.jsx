@@ -59,20 +59,11 @@ export default function Inbox() {
   }
 
   return (
-    <div className="inboxMain">
-      <aside className="conversations">
-        <h3 className="convos">Conversations</h3>
-        {allConversations?.map((conversation) => (
-          <div
-            key={conversation.id}
-            className={`convoCard ${
-              activeConversation?.id === conversation.id ? "active" : ""
-            }`}
-            onClick={() => ConversationSelectHandler(conversation)}
-          >
-            <h4>{conversation.userName}</h4>
-            <p>Click to view conversation</p>
-          </div>
+    <>
+      <div className="inboxMain">
+        <aside className="conversations">
+          <h3 className="convos">Conversations</h3>
+
           <div className="convoCard">
             <h4>Bob Johnson</h4>
             <p>Click to view conversation</p>
