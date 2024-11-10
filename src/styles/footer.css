@@ -1,0 +1,9 @@
+.footer {
+    background-color: var(--convene-gray);
+    padding: 1rem;
+    text-align: center;
+    color: var(--convene-blue);
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}

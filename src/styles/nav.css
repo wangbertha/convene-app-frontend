@@ -1,0 +1,22 @@
+
+.navbar {
+  background-color: var(--convene-blue);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 1;
+}
+
+.navbar a {
+  color: var(--convene-pink);
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.nav-links {
+  padding: 0 0.5rem;
+}

@@ -14,3 +14,9 @@
   --convene-gray: #B3BEC5;
   --convene-white: #ffffff;
 }
+
+.root-main {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  min-height: calc(100vh - 120px);
+}
