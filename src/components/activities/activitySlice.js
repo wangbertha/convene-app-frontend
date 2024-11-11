@@ -15,10 +15,10 @@ const activityApi = api.injectEndpoints({
       providesTags: ["Activity"],
     }),
     updateActivity: build.mutation({
-      query: ({ id, attending }) => ({
+      query: ({ id, saved }) => ({
         url: `/activities/${id}`,
         method: "PATCH",
-        body: { attending },
+        body: { saved },
       }),
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,

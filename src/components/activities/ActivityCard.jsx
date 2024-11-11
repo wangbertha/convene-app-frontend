@@ -7,29 +7,29 @@ import { useGetMeQuery } from "../users/userSlice";
 export default function ActivityCard({ activity }) {
   const { data: user, isLoading, error } = useGetMeQuery();
 
-  //state for changing button classnames when going or not going
-  const [attending, setAttending] = useState(false);
+  //state for changing button classnames when saved or not saved
+  const [saved, setSaved] = useState(false);
 
-  /*Using use effect to only run the logic when the user changes or the attending users
+  /*Using use effect to only run the logic when the user changes or the saved users
    Change to run the code only when its needed*/
   useEffect(() => {
     if (user) {
-      const isAttending = user.activities?.some(
+      const isSaved = user.activities?.some(
         (thisActivity) => thisActivity.id === activity.id
       );
-      setAttending(isAttending);
+      setSaved(isSaved);
     }
   }, [user]);
 
   const [updateActivity] = useUpdateActivityMutation();
 
-  const toggleAttendance = async (newStatus) => {
+  const toggleSaved = async (newStatus) => {
     try {
       await updateActivity({
         id: activity.id,
-        attending: newStatus,
+        saved: newStatus,
       });
-      setAttending(newStatus);
+      setSaved(newStatus);
     } catch (error) {
       console.error("Error updating attendance:", error);
     }
@@ -48,23 +48,23 @@ export default function ActivityCard({ activity }) {
           <div className="switch-container">
             <button
               className={
-                attending
+                saved
                   ? "switch-button left selected"
                   : "switch-button left not-selected"
               }
-              onClick={() => toggleAttendance(true)}
+              onClick={() => toggleSaved(true)}
             >
-              Going
+              Saved
             </button>
             <button
               className={
-                !attending
+                !saved
                   ? "switch-button right selected"
                   : "switch-button right not-selected"
               }
-              onClick={() => toggleAttendance(false)}
+              onClick={() => toggleSaved(false)}
             >
-              Not going
+              Not saved
             </button>
           </div>
         )}

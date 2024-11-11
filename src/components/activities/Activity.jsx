@@ -8,8 +8,8 @@ export default function Activity() {
     const { data: user, isLoading: isLoadingUser, error: userError, refetch: refetchUser } = useGetMeQuery();
     const { data: activity, isLoading: isLoadingActivity, error: activityError } = useGetActivityQuery(id);
 
-    const [updateAttendance] = useUpdateActivityMutation();
-    const isAttending = activity && user
+    const [updateSaved] = useUpdateActivityMutation();
+    const isSaved = activity && user
         ? user.activities?.some((thisActivity) => thisActivity.id === activity.id)
         : false;
 
@@ -21,18 +21,18 @@ export default function Activity() {
         return <p>Error loading activity: {userError?.message || activityError?.message}</p>;
     }
 
-    async function attendanceSwitch() {
+    async function savedSwitch() {
         if (!activity || !user) return;
 
         try {
-            await updateAttendance({
+            await updateSaved({
                 id: activity.id,
-                attending: !isAttending,
+                saved: !isSaved,
             }).unwrap();
             
             await refetchUser();
         } catch (error) {
-            console.error("Error updating attendance:", error);
+            console.error("Error saving:", error);
         }
     }
     
@@ -63,17 +63,17 @@ export default function Activity() {
                         <input
                             type="checkbox"
                             id="filter"
-                            checked={isAttending}
-                            onChange={attendanceSwitch}
+                            checked={isSaved}
+                            onChange={savedSwitch}
                         />
-                        <span>Not Attending</span>
-                        <span>Attending</span>
+                        <span>Not saved</span>
+                        <span>Saved</span>
                     </label>
                 </li>
             </ul>
             
             <section className="attendees">
-                <h3>Attendees</h3>
+                <h3>Saved Users</h3>
                 <ul className="attendees-list">
                     {activity.users.map(user => (
                         <Link to={`/profile/${user.id}`}>
