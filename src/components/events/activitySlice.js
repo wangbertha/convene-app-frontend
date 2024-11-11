@@ -1,31 +1,34 @@
 import api from "../../store/api";
 
-const eventApi = api.injectEndpoints({
+const activityApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getEvents: build.query({
-      query: () => "/events",
+    getActivities: build.query({
+      query: () => "/activities",
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
-      providesTags: ["Events"],
+      providesTags: ["Activity"],
     }),
-    getEvent: build.query({
-      query: (id) => `/events/${id}`,
+    getActivity: build.query({
+      query: (id) => `/activities/${id}`,
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
-      providesTags: ["Events"],
+      providesTags: ["Activity"],
     }),
-    updateEvent: build.mutation({
+    updateActivity: build.mutation({
       query: ({ id, attending }) => ({
-        url: `/events/${id}`,
+        url: `/activities/${id}`,
         method: "PATCH",
         body: { attending },
       }),
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
-      invalidatesTags: ["Events"],
+      invalidatesTags: ["Activity"],
     }),
   }),
 });
 
-export const { useGetEventsQuery, useGetEventQuery, useUpdateEventMutation } =
-  eventApi;
+export const { 
+  useGetActivitiesQuery,
+  useGetActivityQuery,
+  useUpdateActivityMutation,
+} = activityApi;

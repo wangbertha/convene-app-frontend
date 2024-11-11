@@ -1,14 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetMeQuery } from "../users/userSlice";
-import { useGetEventQuery, useUpdateEventMutation } from "./eventsSlice";
+import { useGetActivityQuery, useUpdateActivityMutation } from "./activitySlice";
 import "../../styles/event.css";
 
 export default function Event() {
     const { id } = useParams();
     const { data: user, isLoading: isLoadingUser, error: userError, refetch: refetchUser } = useGetMeQuery();
-    const { data: event, isLoading: isLoadingEvent, error: eventError } = useGetEventQuery(id);
+    const { data: event, isLoading: isLoadingEvent, error: eventError } = useGetActivityQuery(id);
 
-    const [updateAttendance] = useUpdateEventMutation();
+    const [updateAttendance] = useUpdateActivityMutation();
     const isAttending = event && user
         ? user.attendingEvents?.some((attendingEvent) => attendingEvent.id === event.id)
         : false;

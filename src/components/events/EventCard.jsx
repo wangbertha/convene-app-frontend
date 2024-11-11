@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useUpdateEventMutation } from "./eventsSlice";
+import { useUpdateActivityMutation } from "./activitySlice";
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ export default function EventCard({ event }) {
     }
   }, [user]);
 
-  const [updateEvent] = useUpdateEventMutation();
+  const [updateEvent] = useUpdateActivityMutation();
 
   const toggleAttendance = async (newStatus) => {
     try {

@@ -1,11 +1,11 @@
 import EventCard from "./EventCard";
-import { useGetEventsQuery } from "./eventsSlice";
+import { useGetActivitiesQuery } from "./activitySlice";
 
 import "../../styles/EventsList.css";
 
 //Function that renders the list of events
 export default function EventsList() {
-  const { data: events, isLoading, error } = useGetEventsQuery();
+  const { data: events, isLoading, error } = useGetActivitiesQuery();
   console.log(events);
 
   if (isLoading) return <h2>Looking for upcoming Events</h2>;
