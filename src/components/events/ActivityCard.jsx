@@ -1,16 +1,11 @@
-import { useSelector } from "react-redux";
 import { useUpdateActivityMutation } from "./activitySlice";
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { useGetMeQuery } from "../users/userSlice";
 
-export default function EventCard({ event }) {
-  const date = event.startTime.slice(0, 10);
-  const time = event.startTime.slice(11, 19);
-
+export default function ActivityCard({ activity }) {
   const { data: user, isLoading, error } = useGetMeQuery();
-  console.log(user);
 
   //state for changing button classnames when going or not going
   const [attending, setAttending] = useState(false);
@@ -19,19 +14,19 @@ export default function EventCard({ event }) {
    Change to run the code only when its needed*/
   useEffect(() => {
     if (user) {
-      const isAttending = user.attendingEvents?.some(
-        (attendingEvents) => attendingEvents.id === event.id
+      const isAttending = user.activities?.some(
+        (thisActivity) => thisActivity.id === activity.id
       );
       setAttending(isAttending);
     }
   }, [user]);
 
-  const [updateEvent] = useUpdateActivityMutation();
+  const [updateActivity] = useUpdateActivityMutation();
 
   const toggleAttendance = async (newStatus) => {
     try {
-      await updateEvent({
-        id: event.id,
+      await updateActivity({
+        id: activity.id,
         attending: newStatus,
       });
       setAttending(newStatus);
@@ -43,18 +38,10 @@ export default function EventCard({ event }) {
   return (
     <li className="event-card">
       <div className="event-details-div">
-        <Link to={`/events/${event.id}`}>
-          <h3 className="event-name">{event.name}</h3>
+        <Link to={`/activities/${activity.id}`}>
+          <h3 className="event-name">{activity.name}</h3>
         </Link>
-        <p>
-          <b>Date:</b> {date}
-        </p>
-        <p>
-          <b>Time:</b> {time}
-        </p>
-        <p>
-          <b>Venue:</b> {event.venue}
-        </p>
+        <p>{activity.summary}</p>
       </div>
       <div className="event-buttons">
         {user && (
@@ -81,7 +68,7 @@ export default function EventCard({ event }) {
             </button>
           </div>
         )}
-        <Link className="info-button" to={`/events/${event.id}`}>
+        <Link className="info-button" to={`/activities/${activity.id}`}>
           More info
         </Link>
       </div>

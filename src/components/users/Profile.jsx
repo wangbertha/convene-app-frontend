@@ -5,7 +5,7 @@ import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
-import EventCard from "../events/EventCard";
+import EventCard from "../events/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
 import defaultPicture from "../../assets/default-photo.jpg";
@@ -573,7 +573,7 @@ function ProfileInterestsDetail({ label, values }) {
 function ProfileEventsDetail({ values }) {
     return (<>
         <h6 className="profile-attendingevents">Attending Events:</h6>
-        {values.length > 0 ? <ul>{values.map((event) => (<EventCard key={event.id} event={event}/>))}</ul>
+        {values.length > 0 ? <ul>{values.map((event) => (<ActivityCard key={event.id} activity={event}/>))}</ul>
         : <p>You are currently not going to any events. <Link to="/events">Browse events here!</Link></p>}
     </>)
 }

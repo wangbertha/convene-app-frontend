@@ -1,4 +1,4 @@
-import EventCard from "./EventCard";
+import ActivityCard from "./ActivityCard";
 import { useGetActivitiesQuery } from "./activitySlice";
 
 import "../../styles/EventsList.css";
@@ -18,7 +18,7 @@ export default function ActivityList() {
       <h1 className="upcoming-events">Suggested activities for your first meet-up!</h1>
       <ul className="event-list">
         {activities.map((activity) => (
-          <EventCard key={activity.id} event={activity} />
+          <ActivityCard key={activity.id} activity={activity} />
         ))}
       </ul>
     </main>
