@@ -3,30 +3,30 @@ import { useGetMeQuery } from "../users/userSlice";
 import { useGetActivityQuery, useUpdateActivityMutation } from "./activitySlice";
 import "../../styles/event.css";
 
-export default function Event() {
+export default function Activity() {
     const { id } = useParams();
     const { data: user, isLoading: isLoadingUser, error: userError, refetch: refetchUser } = useGetMeQuery();
-    const { data: event, isLoading: isLoadingEvent, error: eventError } = useGetActivityQuery(id);
+    const { data: activity, isLoading: isLoadingActivity, error: activityError } = useGetActivityQuery(id);
 
     const [updateAttendance] = useUpdateActivityMutation();
-    const isAttending = event && user
-        ? user.attendingEvents?.some((attendingEvent) => attendingEvent.id === event.id)
+    const isAttending = activity && user
+        ? user.activities?.some((activity) => activity.id === activity.id)
         : false;
 
-    if (isLoadingUser || isLoadingEvent) {
-        return <p>Loading event details...</p>;
+    if (isLoadingUser || isLoadingActivity) {
+        return <p>Loading activity details...</p>;
     }
 
-    if (userError || eventError) {
-        return <p>Error loading event: {userError?.message || eventError?.message}</p>;
+    if (userError || activityError) {
+        return <p>Error loading activity: {userError?.message || activityError?.message}</p>;
     }
 
     async function attendanceSwitch() {
-        if (!event || !user) return;
+        if (!activity || !user) return;
 
         try {
             await updateAttendance({
-                id: event.id,
+                id: activity.id,
                 attending: !isAttending,
             }).unwrap();
             
@@ -39,17 +39,25 @@ export default function Event() {
     return (
         <main className="event-details">
             <ul>
-                <li><h2>{event.name}</h2></li>
+                <li><h2>{activity.name}</h2></li>
                 <li>
-                    <img src={event.logo} alt={`${event.name} logo`} className="event-logo" />
+                    <img src={activity.logo} alt={`${activity.name} logo`} className="event-logo" />
                 </li>
                 <li className="event-information">
                     <div>
-                    <time dateTime={event.startTime}>{new Date(event.startTime).toLocaleString()}</time> - 
-                    <time dateTime={event.endTime}>{new Date(event.endTime).toLocaleString()}</time>
-                    <p>Location: {event.venue}</p>
-                    <p>Tickets: <a href={event.url} target="_blank" rel="noopener noreferrer">{event.url}</a></p>
-                    <p>Category: {event.category}</p>
+                        <p><b>Description:</b></p>
+                        <p>{activity.summary}</p>
+                        <p><b>Suggested Location(s):</b></p>
+                        <ul>{activity.locations.map((location, i) => (
+                            <li key={i}>{location}</li>
+                        ))}</ul>
+                        <p><b>Planning Resource(s):</b></p>
+                        <ul>{activity.urlResources.map((resource, i) => (
+                            <li key={i}><a href={resource} target="_blank" rel="noopener noreferrer">{resource}</a></li>
+                        ))}</ul>
+                        <p><b>Category:</b> {activity.categories.map((category, i) => (
+                            <span key={i}>{i !== 0 && ", "}{category}</span>
+                        ))}</p>
                     </div>
                     <label htmlFor="filter" className="switch" aria-label="Toggle Filter">
                         <input
@@ -67,7 +75,7 @@ export default function Event() {
             <section className="attendees">
                 <h3>Attendees</h3>
                 <ul className="attendees-list">
-                    {event.attendingUsers.map(user => (
+                    {activity.users.map(user => (
                         <Link to={`/profile/${user.id}`}>
                             <li key={user.id} className="attendee">
                                 <img src={user.profilePicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
