@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Root from "./layout/root";
-import EventsList from "./components/events/EventList";
+import ActivityList from "./components/events/ActivityList";
 import Auth from "./components/auth/Auth";
 import Activity from "./components/events/Activity";
 import Inbox from "./components/inbox/Inbox";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       { path: "/inbox", element: <Inbox /> },
       { path: "/login", element: <Auth /> },
       { path: "/register", element: <Auth /> },
-      { path: "/events", element: <EventsList /> },
+      { path: "/activities", element: <ActivityList /> },
       { path: "/activities/:id", element: <Activity /> },
       { path: "/profile", element: <Profile /> },
       { path: "/chat", element: <Chat /> },
