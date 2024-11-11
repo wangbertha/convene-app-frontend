@@ -5,7 +5,7 @@ import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
-import EventCard from "../events/ActivityCard";
+import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
 import defaultPicture from "../../assets/default-photo.jpg";
@@ -30,6 +30,7 @@ export default function Profile() {
         console.log(error);
         return <p>{error.data || "We ran into an error :("}</p>
     }
+    debugger;
 
     return (
         <main className="profile">

@@ -10,7 +10,7 @@ export default function Activity() {
 
     const [updateAttendance] = useUpdateActivityMutation();
     const isAttending = activity && user
-        ? user.activities?.some((activity) => activity.id === activity.id)
+        ? user.activities?.some((thisActivity) => thisActivity.id === activity.id)
         : false;
 
     if (isLoadingUser || isLoadingActivity) {

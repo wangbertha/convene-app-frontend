@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Root from "./layout/root";
-import ActivityList from "./components/events/ActivityList";
+import ActivityList from "./components/activities/ActivityList";
+import Activity from "./components/activities/Activity";
 import Auth from "./components/auth/Auth";
-import Activity from "./components/events/Activity";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
 import Chat from "./components/chat/ChatComponent";
