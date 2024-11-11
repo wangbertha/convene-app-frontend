@@ -84,7 +84,7 @@ export default function Profile() {
                         <ProfileInterestsDetail label="Interests" values={user.interests} />
                     </li>
                 </ul>
-                <ProfileEventsDetail values={user.attendingEvents} />
+                <ProfileEventsDetail values={user.activities} />
             </section>
         </main>
     )
@@ -572,8 +572,8 @@ function ProfileInterestsDetail({ label, values }) {
 
 function ProfileEventsDetail({ values }) {
     return (<>
-        <h6 className="profile-attendingevents">Attending Events:</h6>
+        <h6 className="profile-attendingevents">Saved Activities:</h6>
         {values.length > 0 ? <ul>{values.map((event) => (<ActivityCard key={event.id} activity={event}/>))}</ul>
-        : <p>You are currently not going to any events. <Link to="/events">Browse events here!</Link></p>}
+        : <p>You do not currently have any activities saved. <Link to="/activities">Browse activities here!</Link></p>}
     </>)
 }
