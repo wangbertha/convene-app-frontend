@@ -9,27 +9,31 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(token);
+
   function handleLogout() {
     dispatch(logout());
     navigate("/");
   }
   return (
     <nav className="navbar">
-      <NavLink to="/">CONVENE</NavLink>
+      <NavLink className="convene-nav-tab" to="/"><span class="underline-center-load">CONVENE</span></NavLink>
       <div className="nav-links">
-        <NavLink to="/profile">Own Profile</NavLink>
-        <NavLink to="/chat">Chat</NavLink>
-        <NavLink to="/browse">Browse Profiles</NavLink>
-        <NavLink to="/events">Events</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/userprefs">User Prefs</NavLink>
+        { token && <NavLink to="/profile"><span class="underline-center-load">Own Profile</span></NavLink> }
+        { token && <NavLink to="/inbox"><span class="underline-center-load">Inbox</span></NavLink> }
+        { token && <NavLink to="/browse"><span class="underline-center-load">Browse Profiles</span></NavLink> }
+        <NavLink to="/events"><span class="underline-center-load">Events</span></NavLink>
         {token ? (
           <a href="#" onClick={handleLogout}>
-            Log Out
+            <span class="underline-center-load">
+              Log Out
+            </span>
           </a>
         ) : (
           <NavLink to="/login">
-            Login
+            <span class="underline-center-load">
+              Login
+            </span>
           </NavLink>
         )}
       </div>
