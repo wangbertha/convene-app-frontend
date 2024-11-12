@@ -1,9 +1,9 @@
 import ActivityCard from "./ActivityCard";
 import { useGetActivitiesQuery } from "../../services/activitySlice";
 
-import "../../styles/EventsList.css";
+import "../../styles/ActivitiesList.css";
 
-//Function that renders the list of events
+//Function that renders the list of activity activities
 export default function ActivityList() {
   const { data: activities, isLoading, error } = useGetActivitiesQuery();
 
@@ -14,9 +14,9 @@ export default function ActivityList() {
   if (!activities.length) return <p>No suggested activities</p>;
 
   return (
-    <main className="main-eventlist">
-      <h1 className="upcoming-events">Suggested activities for your first meet-up!</h1>
-      <ul className="event-list">
+    <main className="main-activitylist">
+      <h1 className="upcoming-activities">Suggested activities for your first meet-up!</h1>
+      <ul className="activity-list">
         {activities.map((activity) => (
           <ActivityCard key={activity.id} activity={activity} />
         ))}

@@ -36,14 +36,14 @@ export default function ActivityCard({ activity }) {
   };
 
   return (
-    <li className="event-card">
-      <div className="event-details-div">
+    <li className="activity-card">
+      <div className="activity-details-div">
         <Link to={`/activities/${activity.id}`}>
-          <h3 className="event-name">{activity.name}</h3>
+          <h3 className="activity-name">{activity.name}</h3>
         </Link>
         <p>{activity.summary}</p>
       </div>
-      <div className="event-buttons">
+      <div className="activity-buttons">
         {user && (
           <div className="switch-container">
             <button
