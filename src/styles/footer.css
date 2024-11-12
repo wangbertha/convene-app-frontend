@@ -1,0 +1,29 @@
+.footer {
+    background-color: var(--convene-gray);
+    padding: 1rem;
+    text-align: center;
+    color: var(--convene-blue);
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
+
+.social-medias  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.social-media  {
+    text-decoration: none;
+    color: var(--convene-blue);
+    transition: transform 0.2s ease-in;
+    align-items: center;
+    margin: .5rem;
+    font-size: 20px;
+}
+
+.social-media:hover {
+    transform: translateY(-6px);
+    color: var(--convene-pink);
+}
