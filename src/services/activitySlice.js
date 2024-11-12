@@ -22,7 +22,7 @@ const activityApi = api.injectEndpoints({
       }),
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
-      invalidatesTags: ["Activity"],
+      invalidatesTags: ["Activity", "User"],
     }),
   }),
 });
