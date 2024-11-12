@@ -70,13 +70,13 @@
 
 .profile-picture-detail {
     flex-direction: column;
-    align-items: center;
 }
 
 .profile-list .profile-picture {
     height: 10rem;
     width: 10rem;
     margin-bottom: 1rem;
+    align-self: center;
 }
 
 .form-column-btns {
@@ -84,22 +84,17 @@
     display: flex;
 }
 
-.profile-password-detail form,
-.profile-location-detail form {
+.profile-multirow-detail form {
     display: flex;
     flex-direction: column;
 }
 
-.profile-location-detail label {
+.profile-multirow-detail label {
     justify-content: start;
 }
 
-.profile-password-detail label h6,
-.profile-location-detail label h6 {
+.profile-multirow-detail label h6 {
     font-size: 0.75rem;
-}
-
-.profile-password-detail label h6 {
     width: 15rem;
 }
 
