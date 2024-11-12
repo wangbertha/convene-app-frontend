@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetMeQuery } from "../../services/userSlice";
 import { useGetActivityQuery, useUpdateActivityMutation } from "../../services/activitySlice";
-import "../../styles/event.css";
+import "../../styles/activities.css";
 
 export default function Activity() {
     const { id } = useParams();
@@ -37,13 +37,13 @@ export default function Activity() {
     }
     
     return (
-        <main className="event-details">
+        <main className="activity-details">
             <ul>
                 <li><h2>{activity.name}</h2></li>
                 <li>
-                    <img src={activity.logo} alt={`${activity.name} logo`} className="event-logo" />
+                    <img src={activity.logo} alt={`${activity.name} logo`} className="activity-logo" />
                 </li>
-                <li className="event-information">
+                <li className="activity-information">
                     <div>
                         <p><b>Description:</b></p>
                         <p>{activity.summary}</p>

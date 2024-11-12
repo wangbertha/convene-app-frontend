@@ -7,23 +7,24 @@ export default function Home() {
     const navigate = useNavigate();
     const [fadeOut, setFadeOut] = useState(false);
 
-    const { data: events, isLoading, error } = useGetActivitiesQuery();
-    console.log(events);
+    const { data: activities, isLoading, error } = useGetActivitiesQuery();
     
-    if (isLoading) return <h2>Looking for upcoming Events</h2>;
+    if (isLoading) return <h2>Looking for upcoming Activities</h2>;
     
     if (error) return <p>{error.message}</p>;
     
-    if (!events.length) return <p>No upcoming events</p>;
+    if (!activities.length) return <p>No upcoming activities</p>;
 
     const handleClick = () => {
         setFadeOut(true);
         setTimeout(() => navigate('/login'), 300);
     };
+
+    console.log(activities);
     
     return (
         <main>
-            <section class="welcome-section">
+            <section className="welcome-section">
                 <h1>Welcome to Convene</h1>
                 <p>Where Popcorn Pals Convene</p>
             </section>
@@ -37,14 +38,13 @@ export default function Home() {
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos vitae autem numquam quisquam animi et placeat qui sit excepturi, quasi ab consectetur officiis, consequuntur harum quam id! Repellendus, accusantium tempore!</p>
                 </article>
                 <article className="left-card">
-                    <h2>Top Events</h2>
-                    <ul className="event-list">
-                        {events.slice(0, 3).map((event) => (
-                            <li key={event.id} className="home-event-card">
-                                <div className="home-event-details">
-                                    <h3>{event.name}</h3>
-                                    <p>{new Date(event.startTime).toLocaleString()}</p>
-                                    <p>{event.venue}</p>
+                    <h2>Top activities</h2>
+                    <ul className="activity-list">
+                        {activities.slice(0, 3).map((activity) => (
+                            <li key={activity.id} className="home-activity-card">
+                                <div className="home-activity-details">
+                                    <h3>{activity.name}</h3>
+                                    <p>{activity.summary}</p>
                                 </div>
                             </li>
                         ))}
