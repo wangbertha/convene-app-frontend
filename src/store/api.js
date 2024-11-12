@@ -10,7 +10,7 @@ const api = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: ["Activity", "User", "Interest", "Messages", "Conversations"],
+  tagTypes: ["Activity", "User", "Interest", "Chats", "Messages"],
 });
 
 export default api;
