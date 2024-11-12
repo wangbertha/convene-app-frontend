@@ -1,5 +1,5 @@
 import ActivityCard from "./ActivityCard";
-import { useGetActivitiesQuery } from "./activitySlice";
+import { useGetActivitiesQuery } from "../../services/activitySlice";
 
 import "../../styles/EventsList.css";
 

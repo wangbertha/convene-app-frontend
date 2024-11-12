@@ -1,7 +1,7 @@
 //placeholder for inbox, more to come with socket-io code
 import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
-import { useGetMeQuery } from "../users/userSlice";
+import { useGetMeQuery } from "../../services/userSlice";
 
 import "../../styles/Inbox.css";
 

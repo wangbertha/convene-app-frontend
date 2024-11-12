@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetEventsQuery } from "../events/eventsSlice";
+import { useGetActivitiesQuery } from "../../services/activitySlice";
 import "../../styles/home.css";
 
 export default function Home() {
     const navigate = useNavigate();
     const [fadeOut, setFadeOut] = useState(false);
 
-    const { data: events, isLoading, error } = useGetEventsQuery();
+    const { data: events, isLoading, error } = useGetActivitiesQuery();
     console.log(events);
     
     if (isLoading) return <h2>Looking for upcoming Events</h2>;

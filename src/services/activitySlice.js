@@ -1,4 +1,4 @@
-import api from "../../store/api";
+import api from "../store/api";
 
 const activityApi = api.injectEndpoints({
   endpoints: (build) => ({

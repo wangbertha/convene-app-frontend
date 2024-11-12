@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { useGetMeQuery } from "../users/userSlice";
-import { useGetActivityQuery, useUpdateActivityMutation } from "./activitySlice";
+import { useGetMeQuery } from "../../services/userSlice";
+import { useGetActivityQuery, useUpdateActivityMutation } from "../../services/activitySlice";
 import "../../styles/event.css";
 
 export default function Activity() {

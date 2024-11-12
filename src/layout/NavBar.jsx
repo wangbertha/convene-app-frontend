@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { logout, selectToken } from "../components/auth/authSlice";
+import { logout, selectToken } from "../services/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/nav.css"
 

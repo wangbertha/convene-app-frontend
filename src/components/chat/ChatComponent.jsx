@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import { useGetMeQuery } from "../users/userSlice";
+import { useGetMeQuery } from "../../services/userSlice";
 
 const socket = io("http://localhost:3000", {
   withCredentials: true,
