@@ -1,10 +1,9 @@
-import { useDeleteMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "./userSlice";
+import { useDeleteMeMutation, useUpdateMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "../../services/userSlice";
 
 import { useState } from "react"
-import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
-import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
+import { useAddInterestMutation, useGetInterestsQuery } from "../../services/interestSlice";
 import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,7 +29,6 @@ export default function Profile() {
         console.log(error);
         return <p>{error.data || "We ran into an error :("}</p>
     }
-    debugger;
 
     return (
         <main className="page profile">

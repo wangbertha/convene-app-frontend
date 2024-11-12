@@ -1,4 +1,4 @@
-import api from "../../store/api";
+import api from "../store/api";
 
 const activityApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -22,7 +22,7 @@ const activityApi = api.injectEndpoints({
       }),
       transformResponse: (response) => response,
       transformErrorResponse: (response) => response,
-      invalidatesTags: ["Activity"],
+      invalidatesTags: ["Activity", "User"],
     }),
   }),
 });
