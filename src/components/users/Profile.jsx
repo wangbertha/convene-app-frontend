@@ -32,9 +32,9 @@ export default function Profile() {
     }
 
     return (
-        <main className="profile">
+        <main className="page profile">
             <section className="profile-main-card">
-            <h1>{user.firstname} {user.lastname ?? user.lastname}</h1>
+            <h2>{user.firstname} {user.lastname ?? user.lastname}</h2>
                 <ul className="profile-list">
                     <li className="profile-picture-detail">
                         <ProfilePictureDetail value={user.profilePicture} />
