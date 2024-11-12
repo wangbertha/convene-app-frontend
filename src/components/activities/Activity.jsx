@@ -76,8 +76,8 @@ export default function Activity() {
                 <h3>Saved Users</h3>
                 <ul className="attendees-list">
                     {activity.users.map(user => (
-                        <Link to={`/profile/${user.id}`}>
-                            <li key={user.id} className="attendee">
+                        <Link key={user.id} to={`/profile/${user.id}`}>
+                            <li className="attendee">
                                 <img src={user.profilePicture} alt={`${user.firstname} ${user.lastname}`} className="profile-picture" />
                                 <div>
                                     <p><strong>{user.firstname} {user.lastname}</strong></p>
