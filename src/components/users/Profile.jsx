@@ -30,7 +30,6 @@ export default function Profile() {
         console.log(error);
         return <p>{error.data || "We ran into an error :("}</p>
     }
-    debugger;
 
     return (
         <main className="page profile">
