@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useGetUsersQuery } from "../users/userSlice";
-import { useCreateChatMutation } from "./chatSlice";
+import { useGetUsersQuery } from "../../services/userSlice";
+import { useCreateChatMutation } from "../../services/chatSlice";
 import { useSelector } from "react-redux";
 
 export default function PotentialChats({ user, chats }) {
@@ -9,7 +9,7 @@ export default function PotentialChats({ user, chats }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { data: users, isLoading, error } = useGetUsersQuery();
 
-  const [createChat, { isLoading: isCreatingChat }] = useCreateChatMutation();
+  const [createChat] = useCreateChatMutation();
 
   // Filters the users with whom you dont have a chat yet,
   // also takes the own user out of it
@@ -39,6 +39,7 @@ export default function PotentialChats({ user, chats }) {
   // Handles chat creation
   function handleCreateChat(recipientId) {
     createChat({ firstId: user.id, secondId: recipientId });
+    setIsDropdownOpen(!isDropdownOpen);
   }
 
   return (

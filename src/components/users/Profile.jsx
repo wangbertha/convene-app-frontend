@@ -1,11 +1,10 @@
-import { useDeleteMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "./userSlice";
+import { useDeleteMeMutation, useUpdateMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "../../services/userSlice";
 
 import { useState } from "react"
-import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
-import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
-import EventCard from "../events/EventCard";
+import { useAddInterestMutation, useGetInterestsQuery } from "../../services/interestSlice";
+import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
 import defaultPicture from "../../assets/default-photo.jpg";
@@ -32,9 +31,9 @@ export default function Profile() {
     }
 
     return (
-        <main className="profile">
+        <main className="page profile">
             <section className="profile-main-card">
-            <h1>{user.firstname} {user.lastname ?? user.lastname}</h1>
+            <h2>{user.firstname} {user.lastname ?? user.lastname}</h2>
                 <ul className="profile-list">
                     <li className="profile-picture-detail">
                         <ProfilePictureDetail value={user.profilePicture} />
@@ -84,7 +83,7 @@ export default function Profile() {
                         <ProfileInterestsDetail label="Interests" values={user.interests} />
                     </li>
                 </ul>
-                <ProfileEventsDetail values={user.attendingEvents} />
+                <ProfileEventsDetail values={user.activities} />
             </section>
         </main>
     )
@@ -572,8 +571,8 @@ function ProfileInterestsDetail({ label, values }) {
 
 function ProfileEventsDetail({ values }) {
     return (<>
-        <h6 className="profile-attendingevents">Attending Events:</h6>
-        {values.length > 0 ? <ul>{values.map((event) => (<EventCard key={event.id} event={event}/>))}</ul>
-        : <p>You are currently not going to any events. <Link to="/events">Browse events here!</Link></p>}
+        <h6 className="profile-attendingevents">Saved Activities:</h6>
+        {values.length > 0 ? <ul>{values.map((event) => (<ActivityCard key={event.id} activity={event}/>))}</ul>
+        : <p>You do not currently have any activities saved. <Link to="/activities">Browse activities here!</Link></p>}
     </>)
 }
