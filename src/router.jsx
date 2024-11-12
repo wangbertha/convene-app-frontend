@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Root from "./layout/Root";
+import Root from "./layout/root";
+import ActivityList from "./components/activities/ActivityList";
+import Activity from "./components/activities/Activity";
 import Home from "./components/home/Home";
-import EventsList from "./components/events/EventList";
 import Auth from "./components/auth/Auth";
-import Event from "./components/events/Event";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
 import Chat from "./components/chat/ChatComponent";
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
       { path: "/inbox", element: <Inbox /> },
       { path: "/login", element: <Auth /> },
       { path: "/register", element: <Auth /> },
-      { path: "/events", element: <EventsList /> },
-      { path: "/events/:id", element: <Event /> },
+      { path: "/activities", element: <ActivityList /> },
+      { path: "/activities/:id", element: <Activity /> },
       { path: "/profile", element: <Profile /> },
       { path: "/chat", element: <Chat /> },
     ],

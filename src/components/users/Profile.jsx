@@ -5,7 +5,7 @@ import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
 import { useAddInterestMutation, useGetInterestsQuery } from "../interests/interestSlice";
-import EventCard from "../events/EventCard";
+import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
 import defaultPicture from "../../assets/default-photo.jpg";
@@ -30,6 +30,7 @@ export default function Profile() {
         console.log(error);
         return <p>{error.data || "We ran into an error :("}</p>
     }
+    debugger;
 
     return (
         <main className="page profile">
@@ -84,7 +85,7 @@ export default function Profile() {
                         <ProfileInterestsDetail label="Interests" values={user.interests} />
                     </li>
                 </ul>
-                <ProfileEventsDetail values={user.attendingEvents} />
+                <ProfileEventsDetail values={user.activities} />
             </section>
         </main>
     )
@@ -572,8 +573,8 @@ function ProfileInterestsDetail({ label, values }) {
 
 function ProfileEventsDetail({ values }) {
     return (<>
-        <h6 className="profile-attendingevents">Attending Events:</h6>
-        {values.length > 0 ? <ul>{values.map((event) => (<EventCard key={event.id} event={event}/>))}</ul>
-        : <p>You are currently not going to any events. <Link to="/events">Browse events here!</Link></p>}
+        <h6 className="profile-attendingevents">Saved Activities:</h6>
+        {values.length > 0 ? <ul>{values.map((event) => (<ActivityCard key={event.id} activity={event}/>))}</ul>
+        : <p>You do not currently have any activities saved. <Link to="/activities">Browse activities here!</Link></p>}
     </>)
 }
