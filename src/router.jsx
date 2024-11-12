@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Root from "./layout/root";
+import Root from "./layout/Root";
+import Home from "./components/home/Home";
 import EventsList from "./components/events/EventList";
 import Auth from "./components/auth/Auth";
 import Event from "./components/events/Event";
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
+      { path: "/", element: <Home /> },
       { path: "/inbox", element: <Inbox /> },
       { path: "/login", element: <Auth /> },
       { path: "/register", element: <Auth /> },

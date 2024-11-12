@@ -1,11 +1,18 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
-//TODO
+import "../index.css"
+import Navbar from "../layout/NavBar"
+import Footer from "../layout/Footer"
 
 function Root() {
   return (
-    <>
-      <Outlet />
-    </>
+    <div>
+      <Navbar />
+      <main className="root-main">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
