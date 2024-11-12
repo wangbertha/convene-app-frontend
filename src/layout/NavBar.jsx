@@ -9,8 +9,6 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(token);
-
   function handleLogout() {
     dispatch(logout());
     navigate("/");
@@ -22,7 +20,7 @@ export default function Navbar() {
         { token && <NavLink to="/profile"><span className="underline-center-load">Own Profile</span></NavLink> }
         { token && <NavLink to="/inbox"><span className="underline-center-load">Inbox</span></NavLink> }
         { token && <NavLink to="/browse"><span className="underline-center-load">Browse Profiles</span></NavLink> }
-        <NavLink to="/events"><span className="underline-center-load">Events</span></NavLink>
+        <NavLink to="/activities"><span className="underline-center-load">Activities</span></NavLink>
         {token ? (
           <a href="#" onClick={handleLogout}>
             <span className="underline-center-load">
