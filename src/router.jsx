@@ -7,8 +7,6 @@ import Event from "./components/events/Event";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
 
-import Chat from "./components/chat/chatComponent";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +18,6 @@ const router = createBrowserRouter([
       { path: "/events", element: <EventsList /> },
       { path: "/events/:id", element: <Event /> },
       { path: "/profile", element: <Profile /> },
-      { path: "/chat", element: <Chat /> },
     ],
   },
 ]);
