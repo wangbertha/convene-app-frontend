@@ -14,7 +14,7 @@ export default function Navbar() {
   }
   return (
     <nav className="navbar">
-      <Link to="/">CONVENE</Link>
+      <NavLink to="/">CONVENE</NavLink>
       <div className="nav-links">
         <Link to="/profile">Own Profile</Link>
         <Link to="/chat">Chat</Link>
