@@ -51,6 +51,11 @@
     width: 10rem;
 }
 
+.profile-list input,
+.profile-list select {
+    height: 1.25rem;
+}
+
 .profile-list button {
     font-size: 0.75rem;
     width: 100%;

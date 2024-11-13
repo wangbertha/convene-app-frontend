@@ -1,17 +1,19 @@
-import { useDeleteMeMutation, useUpdateMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "../../services/userSlice";
-
 import { useState } from "react"
-
-import "../../styles/Profile.css";
-import { useAddInterestMutation, useGetInterestsQuery } from "../../services/interestSlice";
-import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
-import defaultPicture from "../../assets/default-photo.jpg";
+import { useDeleteMeMutation, useUpdateMeMutation, useGetMeQuery, useUpdatePasswordMutation } from "../../services/userSlice";
+import { useAddInterestMutation, useGetInterestsQuery } from "../../services/interestSlice";
 
+import ActivityCard from "../activities/ActivityCard";
+
+import defaultPicture from "../../assets/default-photo.jpg";
+import "../../styles/Profile.css";
+
+// Page component for Profile page
 export default function Profile() {
     const { data: user, isLoading, error } = useGetMeQuery();
 
+    // Option information for select-type inputs
     const genderOptions = ["Male", "Female", "Nonbinary", "Other"];
     const lookingForOptions = ["Friends", "Romantic Partner", "Any"];
     const genderPreferenceOptions = ["Male", "Female", "Nonbinary", "Any"];
@@ -19,14 +21,13 @@ export default function Profile() {
         "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM",
         "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "UV", "VA", "WA", "WV",
         "WI", "WY", "DC", "GU", "MH", "MP", "PR", "VI"];
-    const ageOptions = Array.from({ length: 101}, (_, i) => i);
+    const ageOptions = Array.from({ length: 101-14 }, (_, i) => i + 14);
 
+    // GetMe error/pending response handlers
     if (isLoading) {
         return <p>Loading profile...</p>;
     }
-
     if (error) {
-        console.log(error);
         return <p>{error.data || "We ran into an error :("}</p>
     }
 
@@ -83,12 +84,13 @@ export default function Profile() {
                         <ProfileInterestsDetail label="Interests" values={user.interests} />
                     </li>
                 </ul>
-                <ProfileEventsDetail values={user.activities} />
+                <ProfileActivitiesDetail values={user.activities} />
             </section>
         </main>
     )
 }
 
+// Reusable component that displays the profile detail and includes a form to edit the profile detail
 function ProfileDetail({ label, type, layout, value, options }) {
     const [isEditing, setIsEditing] = useState(false);
     const [input, setInput] = useState(value || "");
@@ -97,6 +99,9 @@ function ProfileDetail({ label, type, layout, value, options }) {
     const [updateMe] = useUpdateMeMutation();
     const [updatePassword] = useUpdatePasswordMutation();
 
+    // Toggles the isEditing status
+    // If isEditing, the edit form is shown
+    // If not isEditing, the user's detail is shown in plain text
     function toggleIsEditing() {
         if (!isEditing) {
             setResponse("");
@@ -107,21 +112,24 @@ function ProfileDetail({ label, type, layout, value, options }) {
         setInput(value || "");
     }
 
+    // Sends form inputs to update the user details
+    // Accounts for one-off layouts: password, location
     async function sendUpdateMe(e) {
         e.preventDefault();
 
         try {
-            const response = layout === "location" 
-                ? await updateMe({ 
-                    city: input.city, 
-                    state: input.state 
-                })
-                : layout === "password"
+            const response = layout === "password"
                 ? await updatePassword({ 
                     currentPassword: input.currentPassword, 
                     newPassword: input.newPassword 
                 })
+                : layout === "location" 
+                ? await updateMe({ 
+                    city: input.city, 
+                    state: input.state 
+                })
                 : await updateMe({ [type]: input });
+            // All details except for the password preserve the form entry to continue edits in the same session
             if (layout === "password") {
                 setInput({
                     currentPassword: "",
@@ -144,33 +152,7 @@ function ProfileDetail({ label, type, layout, value, options }) {
             <img className="profile-picture" src={value ? value : defaultPicture} alt="Your profile picture" />
         }
         <form onSubmit={sendUpdateMe}>
-            {layout === "location" 
-                ? <><h6>{label}:</h6>
-                    <label>
-                        <h6>City:</h6>
-                        {!isEditing ? <span>{value.city ? value.city : "<blank>"}</span>
-                        : <input
-                            placeholder="City"
-                            type="text"
-                            value={input.city}
-                            onChange={(e) => setInput((prevState) => ({...prevState, city: e.target.value}))}
-                            autoComplete="given-name"
-                        />}
-                    </label>
-                    <label>
-                        <h6>State:</h6>
-                        {!isEditing ? <span>{value.state ? value.state : "<blank>"}</span>
-                        : <select value={input.state} onChange={(e) => setInput((prevState) => ({...prevState, state: e.target.value}))}>
-                            <option value="">Please select an option</option>
-                            {options.map((stateOption) => 
-                                <option key={stateOption} value={stateOption}>
-                                    {stateOption}
-                                </option>
-                            )}
-                        </select>}
-                    </label>
-                </>
-            : layout === "password"
+            {layout === "password"
                 ? <>
                     <div className="password-header">
                         <h6>{label}:</h6>
@@ -198,6 +180,32 @@ function ProfileDetail({ label, type, layout, value, options }) {
                             />
                         </label>
                     </>}
+                </>
+            : layout === "location" 
+                ? <><h6>{label}:</h6>
+                    <label>
+                        <h6>City:</h6>
+                        {!isEditing ? <span>{value.city ? value.city : "<blank>"}</span>
+                        : <input
+                            placeholder="City"
+                            type="text"
+                            value={input.city}
+                            onChange={(e) => setInput((prevState) => ({...prevState, city: e.target.value}))}
+                            autoComplete="given-name"
+                        />}
+                    </label>
+                    <label>
+                        <h6>State:</h6>
+                        {!isEditing ? <span>{value.state ? value.state : "<blank>"}</span>
+                        : <select value={input.state} onChange={(e) => setInput((prevState) => ({...prevState, state: e.target.value}))}>
+                            <option value="">Please select an option</option>
+                            {options.map((stateOption) => 
+                                <option key={stateOption} value={stateOption}>
+                                    {stateOption}
+                                </option>
+                            )}
+                        </select>}
+                    </label>
                 </>
             : <label>
                 <h6>{label}:</h6>
@@ -241,6 +249,7 @@ function ProfileDetail({ label, type, layout, value, options }) {
     </>)
 };
 
+// Custom ProfileDetail component for the special case of deleting the profile
 function ProfileDeleteDetail() {
     const [isEditing, setIsEditing] = useState(false);
     const [response, setResponse] = useState("");
@@ -276,6 +285,7 @@ function ProfileDeleteDetail() {
     </>)
 }
 
+// Displays the user's saved interests with functionality to add and delete to their interests
 function ProfileInterestsDetail({ label, values }) {
     const { data: interests } = useGetInterestsQuery();
     const [input, setInput] = useState("");
@@ -284,6 +294,7 @@ function ProfileInterestsDetail({ label, values }) {
     const [updateMe] = useUpdateMeMutation();
     const [addInterest] = useAddInterestMutation();
 
+    // Adds the form input as an interest and connects it to the user's profile
     async function sendUpdateMyInterests(e) {
         e.preventDefault();
 
@@ -301,6 +312,10 @@ function ProfileInterestsDetail({ label, values }) {
         }
     }
 
+    /**
+     * Adds an existing interest to the user's profile
+     * @param {Object} interest An interest that already exists in the database
+     */
     async function sendExistingInterest(interest) {
         try {
             const interestConnectMeResponse = await updateMe({ interestToConnect: interest });
@@ -315,6 +330,10 @@ function ProfileInterestsDetail({ label, values }) {
         }
     }
 
+    /**
+     * Removes an interest from the user's profile
+     * @param {Object} interest An interest that is already connected to the user's profile
+     */
     async function sendDisconnectInterest(interest) {
         try {
             const disconnectResponse = await updateMe({ interestToDisconnect: interest })
@@ -334,6 +353,17 @@ function ProfileInterestsDetail({ label, values }) {
             )}</ul>
             : "Add interests to your profile!"
         }
+        <p className="profile-response">{response}</p>
+        <p>Common Interests:</p>
+        {interests && (input.length > 0
+        ? <ul className="list-bubbles">
+            {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
+                .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+        </ul>
+        : <ul className="list-bubbles">
+                {interests.slice(0,5).map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+        </ul>
+        )}
         <form onSubmit={sendUpdateMyInterests}>
             <label>
                 <h6>New Interest:</h6>
@@ -347,25 +377,15 @@ function ProfileInterestsDetail({ label, values }) {
             </label>
             <button>Add</button>
         </form>
-        <p className="profile-response">{response}</p>
-        {interests && (input.length > 0
-        ? <ul className="list-bubbles">
-            {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
-                .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
-            </ul>
-        : <>
-            <p>Suggestions:</p>
-            <ul className="list-bubbles">
-                {interests.slice(0,5).map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
-            </ul>
-        </>)}
     </>)
 }
 
-function ProfileEventsDetail({ values }) {
+// Displays the user's saved activities with functionality to unsave their activities
+function ProfileActivitiesDetail({ values }) {
     return (<>
         <h6 className="profile-attendingevents">Saved Activities:</h6>
+        <Link to="/activities">Browse activities here!</Link>
         {values.length > 0 ? <ul>{values.map((event) => (<ActivityCard key={event.id} activity={event}/>))}</ul>
-        : <p>You do not currently have any activities saved. <Link to="/activities">Browse activities here!</Link></p>}
+        : <p>You do not currently have any activities saved.</p>}
     </>)
 }
