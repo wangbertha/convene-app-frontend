@@ -72,11 +72,17 @@
     flex-direction: column;
 }
 
+.profile-picture-detail span {
+    height: 1.25rem;
+    overflow: hidden;
+}
+
 .profile-list .profile-picture {
     height: 10rem;
     width: 10rem;
     margin-bottom: 1rem;
     align-self: center;
+    object-fit: cover;
 }
 
 .form-column-btns {
