@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Root from "./layout/root";
+import Root from "./layout/Root";
 import ActivityList from "./components/activities/ActivityList";
 import Activity from "./components/activities/Activity";
 import Home from "./components/home/Home";
