@@ -1,25 +1,10 @@
-.event-details {
-  /*background-color: var(--convene-white);*/
-  color: var(--convene-blue);
-  max-width: 70%;
-  padding: 4rem;
-  border: 1px solid var(--convene-gray);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-  
-.event-details h2 {
-  color: var(--convene-blue);
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  border-bottom: 2px solid var(--convene-pink);
-}
-
-.event-details img {
+.activity-details img {
+  display: block;
+  margin: 3rem auto;
   box-shadow: 0 1px 8px var(--convene-blue);
 }
 
-.event-information {
+.activity-information {
   display: flex;
   align-items: center;
   justify-content:space-around;
@@ -29,28 +14,28 @@
   box-shadow: 0 1px 8px var(--convene-blue);
 }
 
-.event-logo {
+.activity-logo {
   max-width: 100%;
   border-radius: 8px;
   margin: 10px 0;
 }
 
-.event-details ul {
+.activity-details ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.event-details ul li {
+.activity-details ul li {
   margin: 10px 0;
   color: var(--convene-blue);
 }
 
-.event-details p {
+.activity-details p {
   margin: 5px 0;
 }
 
-.event-details a {
+.activity-details a {
   color: var(--convene-pink);
   text-decoration: none;
 }
@@ -75,14 +60,6 @@
   gap: 3ch;
   list-style-type: none;
   padding: 0;
-}
-
-.profile-picture {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-  border: 2px solid var(--convene-blue);
 }
 
 .attendee p {

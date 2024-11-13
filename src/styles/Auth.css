@@ -3,6 +3,8 @@
   color: var(--convene-blue);
   text-align: center;
   max-width: max-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .authForm {
