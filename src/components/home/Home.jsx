@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGetActivitiesQuery } from "../../services/activitySlice";
 import "../../styles/home.css";
 
@@ -19,8 +19,6 @@ export default function Home() {
         setFadeOut(true);
         setTimeout(() => navigate('/login'), 300);
     };
-
-    console.log(activities);
     
     return (
         <main>
@@ -42,10 +40,10 @@ export default function Home() {
                     <ul className="activity-list">
                         {activities.slice(0, 3).map((activity) => (
                             <li key={activity.id} className="home-activity-card">
-                                <div className="home-activity-details">
+                                <Link to={`/activities/${activity.id}`} className="home-activity-details">
                                     <h3>{activity.name}</h3>
                                     <p>{activity.summary}</p>
-                                </div>
+                                </Link>
                             </li>
                         ))}
                     </ul>
