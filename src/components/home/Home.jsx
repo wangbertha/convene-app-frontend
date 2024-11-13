@@ -37,7 +37,7 @@ export default function Home() {
                 </article>
                 <article className="left-card">
                     <h2>Top activities</h2>
-                    <ul className="activity-list">
+                    <ul className="home-activity-list">
                         {activities.slice(0, 3).map((activity) => (
                             <li key={activity.id} className="home-activity-card">
                                 <Link to={`/activities/${activity.id}`} className="home-activity-details">
