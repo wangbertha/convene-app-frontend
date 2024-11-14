@@ -32,7 +32,7 @@ export default function Profile() {
     }
 
     return (
-        <main className="page profile">
+        <div className="page profile">
             <section className="profile-main-card">
             <h2>{user.firstname} {user.lastname ?? user.lastname}</h2>
                 <ul className="profile-list">
@@ -48,13 +48,13 @@ export default function Profile() {
                     <li>
                         <ProfileDetail label="Email" type="email" layout="text" value={user.email} />
                     </li>
-                    <li className="profile-multirow-detail">
+                    <li>
                         <ProfileDetail label="Password" type="password" layout="password" />
                     </li>
                     <li>
                         <ProfileDetail label="Bio" type="bio" layout="text" value={user.bio} />
                     </li>
-                    <li className="profile-multirow-detail">
+                    <li>
                         <ProfileDetail label="Location" layout="location" value={{ city: user.city, state: user.state }} options={stateOptions} />
                     </li>
                     <li>
@@ -86,7 +86,7 @@ export default function Profile() {
                 </ul>
                 <ProfileActivitiesDetail values={user.activities} />
             </section>
-        </main>
+        </div>
     )
 }
 
@@ -99,9 +99,11 @@ function ProfileDetail({ label, type, layout, value, options }) {
     const [updateMe] = useUpdateMeMutation();
     const [updatePassword] = useUpdatePasswordMutation();
 
-    // Toggles the isEditing status
-    // If isEditing, the edit form is shown
-    // If not isEditing, the user's detail is shown in plain text
+    /**
+     * Toggles the isEditing status;
+     * if isEditing, the edit form is shown;
+     * if not isEditing, the user's detail is shown in plain text
+     */
     function toggleIsEditing() {
         if (!isEditing) {
             setResponse("");
@@ -129,6 +131,7 @@ function ProfileDetail({ label, type, layout, value, options }) {
                     state: input.state 
                 })
                 : await updateMe({ [type]: input });
+
             // All details except for the password preserve the form entry to continue edits in the same session
             if (layout === "password") {
                 setInput({
@@ -148,103 +151,147 @@ function ProfileDetail({ label, type, layout, value, options }) {
     }
 
     return (<>
+        {/* Profile Picture */}
         {layout === "profilePicture" && 
             <img className="profile-picture" src={value ? value : defaultPicture} alt="Your profile picture" />
         }
-        <form onSubmit={sendUpdateMe}>
-            {layout === "password"
-                ? <>
-                    <div className="password-header">
-                        <h6>{label}:</h6>
-                        <span>****</span>
-                    </div>
-                    {isEditing && <>
-                        <label>
-                            <h6>Current Password</h6>
-                            <input
-                                placeholder="Current Password"
-                                type="password"
-                                value={input.currentPassword}
-                                onChange={(e) => setInput((prevState) => ({...prevState, currentPassword: e.target.value}))}
+        {/* If isEditing, display edit form */}
+        {isEditing
+            ? <form className="profile-detail-row" onSubmit={sendUpdateMe}>
+                <label>
+                    <h6>{label}:</h6>
+                    {layout === "password"
+                        ? <span>****</span>
+                    : layout === "location" 
+                        ? <span>{" "}</span>
+                    : <>
+                        {(layout === "text" || layout === "profilePicture")
+                            ? <input
+                                placeholder={label}
+                                type="text"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
                                 autoComplete="given-name"
                             />
-                        </label>
-                        <label>
-                            <h6>New Password</h6>
-                            <input
-                                placeholder="New Password"
-                                type="password"
-                                value={input.newPassword}
-                                onChange={(e) => setInput((prevState) => ({...prevState, newPassword: e.target.value}))}
-                                autoComplete="given-name"
-                            />
-                        </label>
-                    </>}
-                </>
-            : layout === "location" 
-                ? <><h6>{label}:</h6>
+                        : layout === "options"
+                            ? <select value={input} onChange={(e) => setInput(e.target.value)}>
+                                <option value="">Please select an option</option>
+                                {options.map((option) => 
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                )}
+                            </select>
+                        : layout === "profileActive"
+                            ? <select value={input} onChange={(e) => setInput(e.target.value === "true")}>
+                                <option value={true}>Active</option>
+                                <option value={false}>Inactive</option>
+                            </select>
+                        : null}
+                    </>
+                }
+                </label>
+                <div className="form-column-btns">
+                    {isEditing && <button type="submit">Save</button>}
+                    <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
+                </div>
+            </form>
+
+        // If not isEditing, display information (value)
+            : <div className="profile-detail-row">
+                <h6>{label}:</h6>
+                <span>
+                    {layout === "password"
+                        ? "****"
+                    : layout === "location" 
+                        ? " "
+                    : layout === "profileActive"
+                        ? (value ? "Active" : "Inactive")
+                    : (value ? value : "<blank>")
+                    }
+                </span>
+                {/* Edit toggle and save buttons */}
+                <div className="form-column-btns">
+                    {isEditing && <button type="submit">Save</button>}
+                    <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
+                </div>
+            </div>
+        }
+
+        {/* Special display case if type is location to group city and state details together */}
+        {(layout === "location" && !isEditing) && 
+            <>
+                <div className="profile-detail-row secondary-row">
+                    <h6>City:</h6>
+                    <span>{value.city ? value.city : "<blank>"}</span>
+                    <div className="form-column-btns">{" "}</div>
+                </div>
+                <div className="profile-detail-row secondary-row">
+                    <h6>State:</h6>
+                    <span>{value.state ? value.state : "<blank>"}</span>
+                    <div className="form-column-btns">{" "}</div>
+                </div>
+            </>
+        }
+
+        {/* Special form edit case if type is password or location to handle multiple inputs */}
+        {isEditing && 
+            (layout === "password"
+                ? <form className="secondary-row" onSubmit={sendUpdateMe}>
+                    <label>
+                        <h6>Current Password</h6>
+                        <input
+                            placeholder="Current Password"
+                            type="password"
+                            value={input.currentPassword}
+                            onChange={(e) => setInput((prevState) => ({...prevState, currentPassword: e.target.value}))}
+                            autoComplete="given-name"
+                        />
+                    </label>
+                    <label>
+                        <h6>New Password</h6>
+                        <input
+                            placeholder="New Password"
+                            type="password"
+                            value={input.newPassword}
+                            onChange={(e) => setInput((prevState) => ({...prevState, newPassword: e.target.value}))}
+                            autoComplete="given-name"
+                        />
+                    </label>
+                </form>
+            : layout === "location"
+                ? <form className="secondary-row" onSubmit={sendUpdateMe}>
                     <label>
                         <h6>City:</h6>
-                        {!isEditing ? <span>{value.city ? value.city : "<blank>"}</span>
-                        : <input
+                        <input
                             placeholder="City"
                             type="text"
                             value={input.city}
                             onChange={(e) => setInput((prevState) => ({...prevState, city: e.target.value}))}
                             autoComplete="given-name"
-                        />}
+                        />
                     </label>
                     <label>
                         <h6>State:</h6>
-                        {!isEditing ? <span>{value.state ? value.state : "<blank>"}</span>
-                        : <select value={input.state} onChange={(e) => setInput((prevState) => ({...prevState, state: e.target.value}))}>
+                        <select value={input.state} onChange={(e) => setInput((prevState) => ({...prevState, state: e.target.value}))}>
                             <option value="">Please select an option</option>
                             {options.map((stateOption) => 
                                 <option key={stateOption} value={stateOption}>
                                     {stateOption}
                                 </option>
                             )}
-                        </select>}
+                        </select>
                     </label>
-                </>
-            : <label>
-                <h6>{label}:</h6>
-                {!isEditing ? layout === "profileActive"
-                    ? <span>{value ? "Active" : "Inactive"}</span>
-                    : <span>{value ? value : "<blank>"}</span>
-                : (layout === "text" || layout === "profilePicture")
-                    ? <input
-                        placeholder={label}
-                        type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        autoComplete="given-name"
-                    />
-                : layout === "options"
-                    ? <select value={input} onChange={(e) => setInput(e.target.value)}>
-                        <option value="">Please select an option</option>
-                        {options.map((option) => 
-                            <option key={option} value={option}>
-                                {option}
-                            </option>
-                        )}
-                </select>
-                : layout === "profileActive"
-                    ? <select value={input} onChange={(e) => setInput(e.target.value === "true")}>
-                        <option value={true}>Active</option>
-                        <option value={false}>Inactive</option>
-                    </select>
-                : null}
-            </label>
-            }
-            <div className="form-column-btns">
-                {isEditing && <button type="submit">Save</button>}
-                <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Edit" : "X"}</button>
-            </div>
-        </form>
-        {layout === "profileActive" && <p className="profile-active-description">
+                </form>
+                : null
+            )}
+        
+        {/* Special message case for profileActive to show description */}
+        {layout === "profileActive" && <p className="profile-detail-description">
             An active profile will be visible to other users, and will help you make the most of our services!
         </p>}
+
+        {/* Display database API response */}
         <p className="profile-response">{response}</p>
     </>)
 };
@@ -261,6 +308,9 @@ function ProfileDeleteDetail() {
         setIsEditing(!isEditing);
     }
 
+    /**
+     * Deletes the logged in user from the database
+     */
     async function sendDeleteMe() {
         try {
             await deleteMe();
@@ -276,7 +326,7 @@ function ProfileDeleteDetail() {
 
     return (<>
         <h6>Delete Account</h6>
-        {isEditing && <p>Are you sure you want to delete your account? This action cannot be undone.</p>}
+        {isEditing && <p className="profile-detail-description">Are you sure you want to delete your account? This action cannot be undone.</p>}
         <div className="form-column-btns">
             {isEditing && <button onClick={sendDeleteMe}>Yes</button>}
             <button type="button" onClick={toggleIsEditing}>{!isEditing ? "Delete Account" : "No"}</button>
@@ -294,7 +344,10 @@ function ProfileInterestsDetail({ label, values }) {
     const [updateMe] = useUpdateMeMutation();
     const [addInterest] = useAddInterestMutation();
 
-    // Adds the form input as an interest and connects it to the user's profile
+    /**
+     * Adds the form input as an interest and connects it to the user's profile
+     * @param {*} e Form event
+     */
     async function sendUpdateMyInterests(e) {
         e.preventDefault();
 
@@ -347,36 +400,49 @@ function ProfileInterestsDetail({ label, values }) {
 
     return (<>
         <h6>{label}:</h6>
+        {/* Displays the user's interests */}
         {values
             ?  <ul className="list-bubbles">{values.map((interest) => 
                 <li key={interest.id}>{interest.interest}<button className="list-bubble-delete" onClick={() => sendDisconnectInterest(interest)}>x</button></li>
             )}</ul>
             : "Add interests to your profile!"
         }
+
+        {/* Display database API response if interests are */}
         <p className="profile-response">{response}</p>
-        <p>Common Interests:</p>
-        {interests && (input.length > 0
-        ? <ul className="list-bubbles">
-            {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
-                .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
-        </ul>
-        : <ul className="list-bubbles">
-                {interests.slice(0,5).map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
-        </ul>
-        )}
-        <form onSubmit={sendUpdateMyInterests}>
-            <label>
-                <h6>New Interest:</h6>
-                <input
-                    placeholder={"Add a new interest"}
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    autoComplete="given-name"
-                />
-            </label>
-            <button>Add</button>
-        </form>
+
+        <div className="profile-interests-add">
+            <h6 className="block-header">Common Interests:</h6>
+
+            {/* If user hasn't typed any input, display the first 5 interests in the database 
+            as clickable interests to add */}
+            {/* If the user has starting typing an input, display all existing interests that match
+            the current input */}
+            {interests && (input.length > 0
+                ? <ul className="list-bubbles">
+                    {interests.filter((interest) => interest.interest.slice(0, input.length) === input)
+                        .map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+                </ul>
+                : <ul className="list-bubbles">
+                    {interests.slice(0,5).map((interest) => (<li key={interest.id} onClick={() => sendExistingInterest(interest)}>{interest.interest}</li>))}
+                </ul>
+            )}
+
+            {/* Form to input a new interest, or generate suggestions from existing interests */}
+            <form className="profile-detail-row" onSubmit={sendUpdateMyInterests}>
+                <label>
+                    <h6>New Interest:</h6>
+                    <input
+                        placeholder={"Add a new interest"}
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        autoComplete="given-name"
+                    />
+                </label>
+                <button>Add</button>
+            </form>
+        </div>
     </>)
 }
 
