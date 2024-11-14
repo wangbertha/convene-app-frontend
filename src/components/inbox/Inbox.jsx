@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { useGetMeQuery } from "../users/userSlice";
-import { useGetUserChatsQuery } from "./chatSlice";
+import { useGetMeQuery } from "../../services/userSlice";
+import { useGetUserChatsQuery } from "../../services/chatSlice";
 import PotentialChats from "./PotentialChats";
 import ChatCard from "./ChatCard";
 import ChatMessages from "./ChatMessages";

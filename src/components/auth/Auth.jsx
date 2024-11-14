@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useLoginMutation, useRegisterMutation } from "./authSlice";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "../../services/authSlice";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Auth.css";
 
@@ -43,7 +46,7 @@ function Auth() {
       <main className="loginMain">
         <img
           className="authImg"
-          src="../../../public/popcorn_pals_convene.png"
+          src="/popcorn_pals_convene.png"
           alt="Convene Logo"
         />
         <h1>Hi, Welcome to Convene!</h1>

@@ -1,21 +1,21 @@
 import {
   useDeleteMeMutation,
+  useUpdateMeMutation,
   useGetMeQuery,
   useUpdatePasswordMutation,
-} from "./userSlice";
+} from "../../services/userSlice";
 
 import { useState } from "react";
-import { useUpdateMeMutation } from "./userSlice";
 
 import "../../styles/Profile.css";
 import {
   useAddInterestMutation,
   useGetInterestsQuery,
-} from "../interests/interestSlice";
+} from "../../services/interestSlice";
 import ActivityCard from "../activities/ActivityCard";
 import { Link, useNavigate } from "react-router-dom";
 
-import defaultPicture from "../../assets/default-photo.jpg";
+import defaultPicture from "/default-photo.jpg";
 
 export default function Profile() {
   const { data: user, isLoading, error } = useGetMeQuery();
@@ -91,7 +91,6 @@ export default function Profile() {
     console.log(error);
     return <p>{error.data || "We ran into an error :("}</p>;
   }
-  debugger;
 
   return (
     <main className="page profile">

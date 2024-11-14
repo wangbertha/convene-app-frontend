@@ -1,15 +1,13 @@
 import React from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { logout, selectToken } from "../components/auth/authSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout, selectToken } from "../services/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import "../styles/nav.css"
+import "../styles/nav.css";
 
 export default function Navbar() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log(token);
 
   function handleLogout() {
     dispatch(logout());
@@ -17,23 +15,35 @@ export default function Navbar() {
   }
   return (
     <nav className="navbar">
-      <NavLink className="convene-nav-tab" to="/"><span class="underline-center-load">CONVENE</span></NavLink>
+      <NavLink className="convene-nav-tab" to="/">
+        <span className="underline-center-load">CONVENE</span>
+      </NavLink>
       <div className="nav-links">
-        { token && <NavLink to="/profile"><span class="underline-center-load">Own Profile</span></NavLink> }
-        { token && <NavLink to="/inbox"><span class="underline-center-load">Inbox</span></NavLink> }
-        { token && <NavLink to="/browse"><span class="underline-center-load">Browse Profiles</span></NavLink> }
-        <NavLink to="/events"><span class="underline-center-load">Events</span></NavLink>
+        {token && (
+          <NavLink to="/profile">
+            <span className="underline-center-load">Own Profile</span>
+          </NavLink>
+        )}
+        {token && (
+          <NavLink to="/inbox">
+            <span className="underline-center-load">Inbox</span>
+          </NavLink>
+        )}
+        {token && (
+          <NavLink to="/browse">
+            <span className="underline-center-load">Browse Profiles</span>
+          </NavLink>
+        )}
+        <NavLink to="/activities">
+          <span className="underline-center-load">Activities</span>
+        </NavLink>
         {token ? (
           <a href="#" onClick={handleLogout}>
-            <span class="underline-center-load">
-              Log Out
-            </span>
+            <span className="underline-center-load">Log Out</span>
           </a>
         ) : (
           <NavLink to="/login">
-            <span class="underline-center-load">
-              Login
-            </span>
+            <span className="underline-center-load">Login</span>
           </NavLink>
         )}
       </div>

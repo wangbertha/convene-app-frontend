@@ -1,8 +1,8 @@
-import { useGetUserQuery } from "../users/userSlice";
-import avatar from "../../assets/defaulpic.png";
+import { useGetUserQuery } from "../../services/userSlice";
+import avatar from "/default-photo.jpg";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentChat, setRecipient } from "./chatStateSlice";
+import { setCurrentChat, setRecipient } from "../../services/chatStateSlice";
 import { useEffect, useState } from "react";
 
 export default function ChatCard({ chat, user }) {

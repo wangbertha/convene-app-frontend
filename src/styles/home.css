@@ -1,7 +1,6 @@
 .welcome-section {
   display: flex;
   flex-direction: column;
-  height: 25vh;
   text-align: center;
 }
 
@@ -19,35 +18,35 @@
   font-size: 25px;
   margin: 25px 0;
   font-style: italic;
-  animation: 2.5s ease-out 0s 1 opacityFadeIn; 
+  animation: 2.5s ease-out 0s 1 opacityFadeIn;
   color: var(--convene-blue);
   text-shadow: 2px 3px 4px var(--convene-gray);
 }
 
 @keyframes slideInFromBottom {
-    0% {
-        transform: translateY(70vh);
-        opacity: 0%;
-    }
-    50% {
-        transform: translateY(0vh);
-        opacity: 40%;
-    }
-    100% {
-        opacity: 100%;
-    }
+  0% {
+    transform: translateY(70vh);
+    opacity: 0%;
+  }
+  50% {
+    transform: translateY(0vh);
+    opacity: 40%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 @keyframes opacityFadeIn {
-    0% {
-        opacity: 0%;
-    }
-    50% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-    }
+  0% {
+    opacity: 0%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 .card-section {
@@ -58,10 +57,12 @@
   margin: auto;
   max-width: 75%;
   gap: 3rem;
-  animation: 2.5s ease-out 0s 1 opacityFadeIn; 
+  animation: 2.5s ease-out 0s 1 opacityFadeIn;
+  margin-bottom: 3rem;
 }
 
-.right-card, .left-card {
+.right-card,
+.left-card {
   width: 45%;
   background-color: #f0f0f0;
   padding: 1.5rem;
@@ -69,13 +70,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.event-list {
+/* HERE */
+.home-activity-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.home-event-card {
+.home-activity-card {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -86,19 +88,19 @@
   margin-bottom: 1rem;
 }
 
-.home-event-details {
+.home-activity-details {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
 
-.home-event-details  h3 {
+.home-activity-details h3 {
   margin: 0;
   font-size: 1.2rem;
   color: var(--convene-white);
 }
 
-.home-event-details  p {
+.home-activity-details p {
   margin: 0;
   color: var(--convene-pink);
 }
@@ -106,13 +108,13 @@
 .img-div {
   display: flex;
   justify-content: center;
-  animation: 2.5s ease-out 0s 1 opacityFadeIn; 
+  animation: 2.5s ease-out 0s 1 opacityFadeIn;
 }
 
 .img-div img {
-  width: 15rem; 
-  height: 15rem; 
-  object-fit: cover; 
-  border-radius: 50%; 
-  overflow: hidden; 
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
 }

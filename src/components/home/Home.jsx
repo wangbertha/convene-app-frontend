@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGetActivitiesQuery } from "../activities/activitySlice";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useGetActivitiesQuery } from "../../services/activitySlice";
 import "../../styles/home.css";
 
 export default function Home() {
@@ -8,13 +8,12 @@ export default function Home() {
   const [fadeOut, setFadeOut] = useState(false);
 
   const { data: activities, isLoading, error } = useGetActivitiesQuery();
-  console.log(activities);
 
-  if (isLoading) return <h2>Looking for upcoming Events</h2>;
+  if (isLoading) return <h2>Looking for upcoming Activities</h2>;
 
   if (error) return <p>{error.message}</p>;
 
-  if (!activities.length) return <p>No upcoming events</p>;
+  if (!activities.length) return <p>No upcoming activities</p>;
 
   const handleClick = () => {
     setFadeOut(true);
@@ -23,13 +22,13 @@ export default function Home() {
 
   return (
     <main>
-      <section class="welcome-section">
+      <section className="welcome-section">
         <h1>Welcome to Convene</h1>
         <p>Where Popcorn Pals Convene</p>
       </section>
       <div className="img-div">
-        <img src="../public/popcornBucket.svg" alt="popcornBucket" />
-        <img src="../public/popcornBucket.svg" alt="popcornBucket" />
+        <img src="/popcornBucket.svg" alt="popcornBucket" />
+        <img src="/popcornBucket.svg" alt="popcornBucket" />
       </div>
       <section className="card-section">
         <article className="right-card">
@@ -42,15 +41,17 @@ export default function Home() {
           </p>
         </article>
         <article className="left-card">
-          <h2>Top Events</h2>
-          <ul className="event-list">
-            {activities.slice(0, 3).map((event) => (
-              <li key={event.id} className="home-event-card">
-                <div className="home-event-details">
-                  <h3>{event.name}</h3>
-                  <p>{new Date(event.startTime).toLocaleString()}</p>
-                  <p>{event.venue}</p>
-                </div>
+          <h2>Top activities</h2>
+          <ul className="activity-list">
+            {activities.slice(0, 3).map((activity) => (
+              <li key={activity.id} className="home-activity-card">
+                <Link
+                  to={`/activities/${activity.id}`}
+                  className="home-activity-details"
+                >
+                  <h3>{activity.name}</h3>
+                  <p>{activity.summary}</p>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,40 +1,42 @@
-.main-eventlist {
+.main-activitylist {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin: 1rem auto;
   max-width: 80%;
-
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin-bottom: 3rem;
 }
 
-.upcoming-events {
+.upcoming-activities {
   color: var(--convene-blue);
-
+  text-align: center;
   margin: 0 0 1rem;
 }
 
-.event-name {
+.activity-name {
   color: var(--convene-pink);
 }
 
-.event-list {
+.activity-list {
   gap: 1rem;
-
-  color: var(--convene-blue);
+  max-width: 50rem;
+  margin: auto;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.event-details-div {
+.activity-details-div {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-
   gap: 10px;
 }
 
-.event-card {
+.activity-card {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -49,13 +51,13 @@
   border-radius: 10px;
 }
 
-.event-card a {
+.activity-card a {
   text-decoration: none;
 }
 
 /* buttons css */
 
-.event-buttons {
+.activity-buttons {
   display: flex;
   gap: 10px;
 
@@ -91,8 +93,8 @@
 }
 
 /* Change button colors on hover */
-.event-buttons button:hover,
-.event-buttons a:hover {
+.activity-buttons button:hover,
+.activity-buttons a:hover {
   background-color: var(--convene-pink);
 
   color: var(--convene-white);
