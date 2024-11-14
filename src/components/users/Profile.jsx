@@ -6,7 +6,7 @@ import { useAddInterestMutation, useGetInterestsQuery } from "../../services/int
 
 import ActivityCard from "../activities/ActivityCard";
 
-import defaultPicture from "../../assets/default-photo.jpg";
+import defaultPicture from "/default-photo.jpg";
 import "../../styles/Profile.css";
 
 // Page component for Profile page
