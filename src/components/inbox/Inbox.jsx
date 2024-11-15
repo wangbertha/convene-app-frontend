@@ -12,8 +12,24 @@ import "../../styles/Inbox.css";
 export default function Inbox() {
   const [socket, setSocket] = useState(null);
 
-  const { data: chats, isLoadingChats, chatsError } = useGetUserChatsQuery();
+  const {
+    data: initialChats,
+    isLoadingChats,
+    chatsError,
+  } = useGetUserChatsQuery();
   const { data: user, isLoadingUser, userError } = useGetMeQuery();
+  const [chats, setChats] = useState([]);
+
+  // Initialize local chats state when `initialChats` data is loaded
+  useEffect(() => {
+    if (initialChats) {
+      setChats(initialChats);
+    }
+  }, [initialChats]);
+
+  function handleDeleteChat(chatId) {
+    setChats((prevChats) => prevChats.filter((chat) => chat.id !== chatId));
+  }
 
   // Initialize socket connection
   useEffect(() => {
@@ -34,7 +50,12 @@ export default function Inbox() {
           <PotentialChats user={user} chats={chats} />
           <h3 className="convos">Conversations</h3>
           {chats?.map((chat) => (
-            <ChatCard key={chat.id} user={user} chats={chats} chat={chat} />
+            <ChatCard
+              key={chat.id}
+              user={user}
+              chat={chat}
+              onDeleteChat={handleDeleteChat}
+            />
           ))}
         </aside>
         <ChatMessages user={user} socket={socket} />

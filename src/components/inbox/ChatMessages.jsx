@@ -13,8 +13,15 @@ export default function ChatMessages({ socket }) {
   const selectedChat = useSelector((state) => state.chats.currentChat);
   const [messages, setMessages] = useState(selectedChat?.messages || []);
   const [textMessage, setTextMessage] = useState("");
+  const onlineUsers = useSelector((state) => state.chats.onlineUsers);
+
   const { data: user } = useGetMeQuery();
   const [sendMessage] = useSendMessageMutation();
+
+  // Checks if the recipietn Id is in the online users array
+  const isUserOnline = onlineUsers?.some(
+    (user) => user?.userId === recipientId
+  );
 
   useEffect(() => {
     if (!socket) return;
@@ -122,7 +129,10 @@ export default function ChatMessages({ socket }) {
 
   return (
     <div className="chat-box">
-      <div className="chat-header">{recipientUser.firstname}</div>
+      <div className="chat-header">
+        {recipientUser.firstname}
+        <span className={isUserOnline ? "user-online-chat-header" : ""}></span>
+      </div>
       <div className="messages" ref={messagesContainerRef}>
         {selectedChat?.messages?.map((message, id) => (
           <div

@@ -30,10 +30,19 @@ const chatSlice = createSlice({
     setOnlineUsers(state, action) {
       state.onlineUsers = action.payload;
     },
+    resetCurrentChat(state) {
+      state.currentChat = null;
+      state.recipientUser = null;
+    },
   },
 });
 
-export const { setCurrentChat, setRecipient, addMessage, setOnlineUsers } =
-  chatSlice.actions;
+export const {
+  setCurrentChat,
+  setRecipient,
+  addMessage,
+  setOnlineUsers,
+  resetCurrentChat,
+} = chatSlice.actions;
 
 export default chatSlice.reducer;

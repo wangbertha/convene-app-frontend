@@ -4,7 +4,7 @@
   width: 100%;
 
   padding: 2rem 1rem;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
 }
 
 /* Chat Box */
@@ -85,6 +85,17 @@
 }
 
 /* Chat Input  */
+.options-delete {
+  margin: -5px 0 -5px;
+  align-self: flex-end;
+  height: 20px;
+}
+
+.options {
+  margin: -5px 0 -5px;
+  align-self: flex-end;
+}
+
 .horizontal-input {
   display: flex;
   flex-direction: row;
@@ -255,11 +266,19 @@
   border-bottom: none;
 }
 
-.user-online {
+.user-online-chat-card {
   background-color: rgb(12, 153, 12);
   border-radius: 50%;
   width: 10px;
   height: 10px;
   align-self: center;
   margin-left: auto;
+}
+
+.user-online-chat-header {
+  background-color: rgb(12, 153, 12);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
 }
