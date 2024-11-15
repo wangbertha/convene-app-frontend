@@ -94,10 +94,6 @@
   margin-top: auto;
 }
 
-.react-emoji {
-  overflow: hidden;
-}
-
 .send-btn {
   border: none;
   background: var(--convene-blue);
