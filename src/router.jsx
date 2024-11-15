@@ -21,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/activities", element: <ActivityList /> },
       { path: "/activities/:id", element: <Activity /> },
       { path: "/profile", element: <Profile /> },
+      
       { path: "/browse", element: <BrowseProfiles /> },
     ],
   },
