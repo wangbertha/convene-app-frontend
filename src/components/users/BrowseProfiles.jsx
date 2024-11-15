@@ -7,7 +7,7 @@ export default function BrowseProfiles() {
   const [profiles, setProfiles] = useState([]); // Stores fetched profiles
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0); // Tracks the currently displayed profile
   const { data: users, isLoading, error } = useGetUsersQuery();
-  // Fetch profiles from the backend
+  // Fetch some profiles from the backend
   if (isLoading) {
     return <p>Loading profile...</p>;
 }
