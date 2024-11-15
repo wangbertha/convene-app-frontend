@@ -124,12 +124,6 @@
   margin-top: auto;
 }
 
-.input-chat {
-  flex-grow: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
 .send-btn {
   border: none;
   background: var(--convene-blue);

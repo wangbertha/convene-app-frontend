@@ -31,7 +31,7 @@
     flex-direction: column;
 }
 
-.profile-list form {
+.profile-list .profile-detail-row {
     width: 100%;
     display: flex;
 }
@@ -49,6 +49,11 @@
 .profile-list input,
 .profile-list select {
     width: 10rem;
+}
+
+.profile-list input,
+.profile-list select {
+    height: 1.25rem;
 }
 
 .profile-list button {
@@ -70,47 +75,35 @@
 
 .profile-picture-detail {
     flex-direction: column;
-    align-items: center;
+}
+
+.profile-picture-detail span {
+    height: 1.25rem;
+    overflow: hidden;
 }
 
 .profile-list .profile-picture {
     height: 10rem;
     width: 10rem;
     margin-bottom: 1rem;
+    align-self: center;
+    object-fit: cover;
 }
 
 .form-column-btns {
+    padding-left: 0.25rem;
     min-width: 5rem;
     display: flex;
 }
 
-.profile-password-detail form,
-.profile-location-detail form {
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-location-detail label {
-    justify-content: start;
-}
-
-.profile-password-detail label h6,
-.profile-location-detail label h6 {
-    font-size: 0.75rem;
-}
-
-.profile-password-detail label h6 {
-    width: 15rem;
-}
-
-.password-header {
-    display: flex;
-}
-
-.profile-active-description {
+.profile-detail-description {
     font-size: 0.75rem;
     font-weight: 700;
     font-style: italic;
+}
+
+.secondary-row h6 {
+    font-size: 0.75rem;
 }
 
 .profile-delete-detail h6 {
@@ -121,6 +114,16 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.profile-interests .profile-response {
+    text-align: left;
+}
+
+.profile-interests-add {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .profile-attendingevents {

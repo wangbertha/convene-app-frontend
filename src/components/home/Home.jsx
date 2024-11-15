@@ -34,10 +34,7 @@ export default function Home() {
         <article className="right-card">
           <h2>About Convene</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            vitae autem numquam quisquam animi et placeat qui sit excepturi,
-            quasi ab consectetur officiis, consequuntur harum quam id!
-            Repellendus, accusantium tempore!
+            Welcome to Convene, the newest app to find friends, that special someone, or a companion for a local event. Logged in users can add and edit information about themselves, add their interests, create a list of other liked users to connect with, one-to-one chat with other users, and add local activity types they might be interested in attending.
           </p>
         </article>
         <article className="left-card">

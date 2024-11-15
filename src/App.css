@@ -36,6 +36,10 @@ li {
   list-style: none;
 }
 
+main h6.block-header {
+  width: 100%;
+}
+
 .page {
   color: var(--convene-blue);
   max-width: 70%;
