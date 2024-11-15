@@ -40,7 +40,7 @@ export default function Inbox() {
 
   // Initialize socket connection
   useEffect(() => {
-    const newSocket = io("http://localhost:3000", { withCredentials: true });
+    const newSocket = io("https://convene-app-backend.onrender.com", { withCredentials: true });
     setSocket(newSocket);
     return () => newSocket.disconnect();
   }, []);
