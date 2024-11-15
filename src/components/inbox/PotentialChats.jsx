@@ -60,7 +60,7 @@ export default function PotentialChats({ user, chats }) {
                 <span
                   className={
                     onlineUsers?.some((user) => user?.userId === u?.id)
-                      ? "user-online"
+                      ? "user-online-chat-card"
                       : ""
                   }
                 ></span>
