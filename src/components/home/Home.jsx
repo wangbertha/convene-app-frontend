@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetActivitiesQuery } from "../../services/activitySlice";
-import "../../styles/home.css";
+import "../../styles/Home.css";
 
 export default function Home() {
   const navigate = useNavigate();
