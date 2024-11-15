@@ -141,14 +141,12 @@ export default function ChatMessages({ socket }) {
         ))}
       </div>
       <div className="horizontal-input">
-        <div className={"input-chat"}>
-          <ImputEmoji
-            value={textMessage}
-            onChange={setTextMessage}
-            onKeyDown={onKeyEnter}
-            borderColor="rgba(72, 112. 223. 8.2)"
-          />
-        </div>
+        <ImputEmoji
+          value={textMessage}
+          onChange={setTextMessage}
+          onKeyDown={onKeyEnter}
+          borderColor="rgba(72, 112. 223. 8.2)"
+        />
         <button className="send-btn" onClick={() => handleSendMessage()}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
