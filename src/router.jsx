@@ -7,6 +7,7 @@ import Home from "./components/home/Home";
 import Auth from "./components/auth/Auth";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
+
 import BrowseProfiles from "./components/users/BrowseProfiles";
 
 const router = createBrowserRouter([
