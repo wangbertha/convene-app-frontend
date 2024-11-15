@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import '../styles/ProfileCard.css';
+import '../../styles/ProfileCard.css';
 
 export default function ProfileCard({ profile, onSwipe }) {
   const [{ x }, api] = useSpring(() => ({ x: 0 })); // Animates horizontal swipe
@@ -74,11 +74,29 @@ export default function ProfileCard({ profile, onSwipe }) {
       onMouseUp={handleMouseUp} // Release drag
       onMouseLeave={() => isDragging && handleMouseUp()} // Handle drag exit
     >
-      <img src={profile.image} alt="Profile" className="profile-image" />
+      <img src={profile.profilePicture} alt="Profile" className="profile-picture" />
       <div className="profile-info">
-        <h3>{profile.name}</h3>
+        <h3>{profile.firstname}</h3>
         <p>{profile.bio}</p>
         <p>Age: {profile.age}</p>
+        <p>Location: {profile.city}, {profile.state}</p>
+        <p>Gender: {profile.gender}</p>
+        <p>Looking For: {profile.lookingFor}</p>
+        <p>Gender Preference: {profile.genderPreference}</p>
+        <p>Interests:</p>
+        {profile.interests > 0
+          ? <ul className="list-bubbles">{profile.interests.map((interest) => 
+            <li key={interest.id}>{interest.interest}</li>)}
+          </ul>
+          : <p>(No interests saved)</p>
+        }
+        <p>Saved Activities:</p>
+        {profile.activities > 0
+          ? <ul className="list-bubbles">{profile.activities.map((activity) => 
+            <li key={activity.id}>{activity.interest}</li>)}
+          </ul>
+          : <p>(No activities saved)</p>
+        }
       </div>
     </animated.div>
   );
