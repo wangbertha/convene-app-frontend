@@ -15,7 +15,9 @@ export default function ActivityList() {
 
   return (
     <main className="main-activitylist">
-      <h1 className="upcoming-activities">Suggested activities for your first meet-up!</h1>
+      <h1 className="upcoming-activities">
+        Suggested activities for your first meet-up!
+      </h1>
       <ul className="activity-list">
         {activities.map((activity) => (
           <ActivityCard key={activity.id} activity={activity} />

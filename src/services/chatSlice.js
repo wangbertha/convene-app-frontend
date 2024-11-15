@@ -28,8 +28,21 @@ const chatApi = api.injectEndpoints({
       transformErrorResponse: (response) => response,
       providesTags: ["Chats"],
     }),
+    deleteChat: build.mutation({
+      query: (id) => ({
+        url: `/chats/${id}`,
+        method: "DELETE",
+      }),
+      transformResponse: (response) => response,
+      transformErrorResponse: (response) => response,
+      providesTags: ["Chats"],
+    }),
   }),
 });
 
-export const { useCreateChatMutation, useGetUserChatsQuery, useGetChatQuery } =
-  chatApi;
+export const {
+  useCreateChatMutation,
+  useGetUserChatsQuery,
+  useGetChatQuery,
+  useDeleteChatMutation,
+} = chatApi;

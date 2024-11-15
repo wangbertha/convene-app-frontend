@@ -7,9 +7,15 @@
 .activity-information {
   display: flex;
   align-items: center;
-  justify-content:space-around;
+  justify-content: space-around;
   padding: 10px;
-  background: linear-gradient(135deg, var(--convene-pink), var(--convene-gray), var(--convene-white), var(--convene-blue));
+  background: linear-gradient(
+    135deg,
+    var(--convene-pink),
+    var(--convene-gray),
+    var(--convene-white),
+    var(--convene-blue)
+  );
   border-radius: 8px;
   box-shadow: 0 1px 8px var(--convene-blue);
 }
@@ -42,7 +48,6 @@
 
 .attendees {
   margin-top: 20px;
-  
 }
 
 .attendees h3 {
@@ -73,21 +78,16 @@
 }
 
 /* css for the switch */
-/* From Uiverse.io by cbolson */ 
+/* From Uiverse.io by cbolson */
 /* https://uiverse.io/cbolson/slippery-treefrog-30 */
 .switch {
   --_switch-bg-clr: var(--convene-blue);
   --_switch-padding: 4px;
-  --_slider-bg-clr: var(--convene-gray); 
-  --_slider-bg-clr-on: var(--convene-pink); 
+  --_slider-bg-clr: var(--convene-gray);
+  --_slider-bg-clr-on: var(--convene-pink);
   --_slider-txt-clr: #ffffff;
-  --_label-padding: 13px 13px; 
-  --_switch-easing: cubic-bezier(
-    0.47,
-    1.64,
-    0.41,
-    0.8
-  );
+  --_label-padding: 13px 13px;
+  --_switch-easing: cubic-bezier(0.47, 1.64, 0.41, 0.8);
   color: white;
   width: fit-content;
   display: flex;
@@ -130,13 +130,10 @@
   background-color: var(--_slider-bg-clr);
   inset: var(--_switch-padding) 50% var(--_switch-padding)
     var(--_switch-padding);
-  transition:
-    inset 500ms var(--_switch-easing),
+  transition: inset 500ms var(--_switch-easing),
     background-color 500ms ease-in-out;
   z-index: -1;
-  box-shadow:
-    inset 0 1px 1px rgba(0, 0, 0, 0.3),
-    0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .switch::after {
@@ -178,7 +175,7 @@
   opacity: 1;
 }
 
-/* Animation for on hover user */ 
+/* Animation for on hover user */
 .attendee {
   display: flex;
   align-items: center;
@@ -199,9 +196,10 @@
   box-shadow: 0 0px 80px 0px var(--convene-pink);
 }
 
-.attendee:hover::before, .attendee:hover::after {
+.attendee:hover::before,
+.attendee:hover::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   padding: 1rem;
   width: 250px;
@@ -228,7 +226,7 @@
   }
   25% {
     top: 0;
-    left: 5px;    
+    left: 5px;
   }
   37% {
     top: 2px;
@@ -236,7 +234,7 @@
   }
   50% {
     top: 5px;
-    left: 0;    
+    left: 0;
   }
   62% {
     top: 2px;
@@ -252,7 +250,7 @@
   }
   100% {
     top: -5px;
-    left: 0;    
+    left: 0;
   }
 }
 
@@ -267,7 +265,7 @@
   }
   25% {
     top: 0;
-    right: 5px;    
+    right: 5px;
   }
   37% {
     top: 2px;
@@ -275,7 +273,7 @@
   }
   50% {
     top: 5px;
-    right: 0;    
+    right: 0;
   }
   62% {
     top: 2px;
@@ -291,6 +289,6 @@
   }
   100% {
     top: -5px;
-    right: 0;    
+    right: 0;
   }
 }

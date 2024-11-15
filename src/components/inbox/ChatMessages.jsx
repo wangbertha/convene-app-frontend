@@ -6,15 +6,22 @@ import { useSendMessageMutation } from "../../services/messageSlice";
 import { addMessage, setOnlineUsers } from "../../services/chatStateSlice";
 import { useGetMeQuery } from "../../services/userSlice";
 
-export default function ChatMessages({ socket }) {
+export default function ChatMessages({ socket, isMobileView, setIsChatOpen }) {
   const dispatch = useDispatch();
   const recipientUser = useSelector((state) => state.chats.recipientUser);
   const recipientId = recipientUser?.id;
   const selectedChat = useSelector((state) => state.chats.currentChat);
   const [messages, setMessages] = useState(selectedChat?.messages || []);
   const [textMessage, setTextMessage] = useState("");
+  const onlineUsers = useSelector((state) => state.chats.onlineUsers);
+
   const { data: user } = useGetMeQuery();
   const [sendMessage] = useSendMessageMutation();
+
+  // Checks if the recipietn Id is in the online users array
+  const isUserOnline = onlineUsers?.some(
+    (user) => user?.userId === recipientId
+  );
 
   useEffect(() => {
     if (!socket) return;
@@ -121,8 +128,24 @@ export default function ChatMessages({ socket }) {
     );
 
   return (
-    <div className="chat-box">
-      <div className="chat-header">{recipientUser.firstname}</div>
+    <div className={isMobileView ? "chat-box-mobile" : "chat-box"}>
+      <div className="chat-header">
+        {isMobileView && (
+          <svg
+            onClick={() => setIsChatOpen(false)}
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="black"
+            viewBox="0 0 16 16"
+          >
+            <path d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z" />
+            <path d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+          </svg>
+        )}
+        {recipientUser.firstname}
+        <span className={isUserOnline ? "user-online-chat-header" : ""}></span>
+      </div>
       <div className="messages" ref={messagesContainerRef}>
         {selectedChat?.messages?.map((message, id) => (
           <div
