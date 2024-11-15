@@ -9,6 +9,8 @@ import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
 import ProfileById from "./components/users/ProfileById";
 
+import BrowseProfiles from "./components/users/BrowseProfiles";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +23,9 @@ const router = createBrowserRouter([
       { path: "/activities", element: <ActivityList /> },
       { path: "/activities/:id", element: <Activity /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/browse", element: <BrowseProfiles /> },
       { path: "/profile/:id", element: <ProfileById />}
+
     ],
   },
 ]);
