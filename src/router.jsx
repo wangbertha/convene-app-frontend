@@ -7,6 +7,7 @@ import Home from "./components/home/Home";
 import Auth from "./components/auth/Auth";
 import Inbox from "./components/inbox/Inbox";
 import Profile from "./components/users/Profile";
+import ProfileById from "./components/users/ProfileById";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/activities", element: <ActivityList /> },
       { path: "/activities/:id", element: <Activity /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/profile/:id", element: <ProfileById />}
     ],
   },
 ]);
