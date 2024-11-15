@@ -61,6 +61,7 @@ export default function ChatCard({ chat, user, onDeleteChat, setIsChatOpen }) {
       onDeleteChat(chat.id);
       dispatch(resetCurrentChat());
       setIsOptionsOpen(false);
+      if (currentChat.id === chat.id) setIsChatOpen(false);
     } catch (error) {
       console.error(`Failed to delete chat`, error);
     }
