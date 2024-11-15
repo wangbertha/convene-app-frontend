@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import ProfileCard from '../../layout/ProfileCard';
+import { useState, } from 'react';
+import ProfileCard from './ProfileCard';
 import '../../styles/BrowseProfiles.css';
 import { useGetUsersQuery } from "../../services/userSlice";
 
 export default function BrowseProfiles() {
-  const [profiles, setProfiles] = useState([]); // Stores fetched profiles
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0); // Tracks the currently displayed profile
   const { data: users, isLoading, error } = useGetUsersQuery();
   // Fetch some profiles from the backend
