@@ -1,7 +1,10 @@
-import { useState, } from 'react';
-import ProfileCard from './ProfileCard';
-import '../../styles/BrowseProfiles.css';
+import { useState } from 'react';
+
 import { useGetUsersQuery } from "../../services/userSlice";
+
+import ProfileCard from './ProfileCard';
+
+import '../../styles/BrowseProfiles.css';
 
 export default function BrowseProfiles() {
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0); // Tracks the currently displayed profile

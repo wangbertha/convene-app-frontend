@@ -1,5 +1,6 @@
-import ActivityCard from "./ActivityCard";
 import { useGetActivitiesQuery } from "../../services/activitySlice";
+
+import ActivityCard from "./ActivityCard";
 
 import "../../styles/ActivitiesList.css";
 

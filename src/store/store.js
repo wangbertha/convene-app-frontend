@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import api from "./api";
 import authReducer from "../services/authSlice";
 import chatStateReducer from "../services/chatStateSlice";

@@ -1,14 +1,17 @@
+import { useEffect, useState } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
 import { useGetUserQuery } from "../../services/userSlice";
 import { useDeleteChatMutation } from "../../services/chatSlice";
-import avatar from "/default-photo.jpg";
-import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
 import {
   setCurrentChat,
   setRecipient,
   resetCurrentChat,
 } from "../../services/chatStateSlice";
-import { useEffect, useState } from "react";
+
+import moment from "moment";
+
+import avatar from "/default-photo.jpg";
 
 export default function ChatCard({ chat, user, onDeleteChat, setIsChatOpen }) {
   const dispatch = useDispatch();
