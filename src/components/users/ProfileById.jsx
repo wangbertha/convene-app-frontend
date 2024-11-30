@@ -1,6 +1,8 @@
-import ProfileCard from './ProfileCard';
-import { useGetUserQuery } from "../../services/userSlice";
 import { useParams } from 'react-router-dom';
+
+import { useGetUserQuery } from "../../services/userSlice";
+
+import ProfileCard from './ProfileCard';
 
 import "../../styles/ProfileById.css";
 

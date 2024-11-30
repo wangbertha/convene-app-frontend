@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+
+import { useSelector } from "react-redux";
 import { useGetUsersQuery } from "../../services/userSlice";
 import { useCreateChatMutation } from "../../services/chatSlice";
-import { useSelector } from "react-redux";
 
 export default function PotentialChats({ user, chats }) {
   const onlineUsers = useSelector((state) => state.chats.onlineUsers);

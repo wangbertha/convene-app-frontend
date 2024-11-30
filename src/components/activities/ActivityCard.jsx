@@ -1,7 +1,8 @@
-import { useUpdateActivityMutation } from "../../services/activitySlice";
 import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+
+import { useUpdateActivityMutation } from "../../services/activitySlice";
 import { useGetMeQuery } from "../../services/userSlice";
 
 export default function ActivityCard({ activity }) {

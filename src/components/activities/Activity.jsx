@@ -1,9 +1,11 @@
 import { useParams, Link } from "react-router-dom";
+
 import { useGetMeQuery } from "../../services/userSlice";
 import {
   useGetActivityQuery,
   useUpdateActivityMutation,
 } from "../../services/activitySlice";
+
 import "../../styles/activities.css";
 
 export default function Activity() {

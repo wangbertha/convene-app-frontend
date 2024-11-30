@@ -1,6 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { logout, selectToken } from "../services/authSlice";
+
 import { useDispatch, useSelector } from "react-redux";
+import { logout, selectToken } from "../services/authSlice";
+
 import "../styles/NavBar.css";
 
 export default function Navbar() {

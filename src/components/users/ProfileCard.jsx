@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
+
 import '../../styles/ProfileCard.css';
 
 export default function ProfileCard({ profile, onSwipe }) {
