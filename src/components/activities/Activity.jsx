@@ -6,7 +6,7 @@ import {
   useUpdateActivityMutation,
 } from "../../services/activitySlice";
 
-import "../../styles/activities.css";
+import "../../styles/Activities.css";
 
 export default function Activity() {
   const { id } = useParams();
