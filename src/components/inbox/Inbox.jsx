@@ -5,7 +5,6 @@ import PotentialChats from "./PotentialChats";
 import ChatCard from "./ChatCard";
 import ChatMessages from "./ChatMessages";
 import { io } from "socket.io-client";
-import { useSelector } from "react-redux";
 import "../../styles/Inbox.css";
 
 export default function Inbox() {
