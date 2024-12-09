@@ -1,10 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
-import ImputEmoji from "react-input-emoji";
 import { useState, useEffect, useRef } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
 import { useSendMessageMutation } from "../../services/messageSlice";
 import { addMessage, setOnlineUsers } from "../../services/chatStateSlice";
 import { useGetMeQuery } from "../../services/userSlice";
+
+import moment from "moment";
+import ImputEmoji from "react-input-emoji";
 
 export default function ChatMessages({ socket, isMobileView, setIsChatOpen }) {
   const dispatch = useDispatch();
