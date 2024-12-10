@@ -32,10 +32,10 @@ export default function Activity() {
     return <p>Loading activity details...</p>;
   }
 
-  if (userError || activityError) {
+  if (activityError) {
     return (
       <p>
-        Error loading activity: {userError?.message || activityError?.message}
+        Error loading activity: {activityError?.message}
       </p>
     );
   }
@@ -117,33 +117,34 @@ export default function Activity() {
         </li>
       </ul>
 
-      <section className="attendees">
-        <h3>Saved Users</h3>
-        <ul className="attendees-list">
-          {activity.users.map((user) => (
-            <Link key={user.id} to={`/profile/${user.id}`}>
-              <li className="attendee">
-                <img
-                  src={user.profilePicture}
-                  alt={`${user.firstname} ${user.lastname}`}
-                  className="profile-picture"
-                />
-                <div>
-                  <p>
-                    <strong>
-                      {user.firstname} {user.lastname}
-                    </strong>
-                  </p>
-                  <p>{user.bio}</p>
-                  <p>
-                    {user.city}, {user.state}
-                  </p>
-                </div>
-              </li>
-            </Link>
-          ))}
-        </ul>
-      </section>
+      {activity.users && <section className="attendees">
+          <h3>Saved Users</h3>
+          <ul className="attendees-list">
+            {activity.users.map((user) => (
+              <Link key={user.id} to={`/profile/${user.id}`}>
+                <li className="attendee">
+                  <img
+                    src={user.profilePicture}
+                    alt={`${user.firstname} ${user.lastname}`}
+                    className="profile-picture"
+                  />
+                  <div>
+                    <p>
+                      <strong>
+                        {user.firstname} {user.lastname}
+                      </strong>
+                    </p>
+                    <p>{user.bio}</p>
+                    <p>
+                      {user.city}, {user.state}
+                    </p>
+                  </div>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </section>
+      }
     </main>
   );
 }
