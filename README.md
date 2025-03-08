@@ -4,11 +4,28 @@
 
 Welcome to Convene, the newest app to find friends, that special someone, or a companion for a local event. Logged in users can add and edit information about themselves, add their interests, create a list of other liked users to connect with, one-to-one chat with other users, and add local activity types they might be interested in attending.
 
-## Funcionality
+## Getting Started
+
+### Set up the project locally
+
+1. Install Node.js and npm: [Downloading and installing Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+2. Clone the repository locally: `git clone https://github.com/wangbertha/convene-app-frontend.git`
+3. Install dependencies: `npm install`
+
+### Set up the corresponding backend
+
+1. Follow the Getting Started instructions in the [Convene App backend repository](https://github.com/wangbertha/convene-app-backend)
+
+### Run the project locally
+
+1. Run the project locally: `npm run dev`
+2. Open the following in your browser: `http://localhost:5173/`
+
+## Functionality
 
 ### Homepage
 
-![Home page](./public/screenshot_home.png =40x40)
+<img src="./public/screenshot_home.png" width="500" alt="Screenshot of login page" />
 
 Upon loading the home page, the user is greeted with the logo above, as well as a list of activity ideas available. The user can view a list of all activities available before logging in.
 
